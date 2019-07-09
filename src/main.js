@@ -11,3 +11,8 @@ export const initFirebase = () => {
       };
     firebase.initializeApp(firebaseConfig);
     };
+
+window.addEventListener('load', () => {
+  initFirebase()
+  init()
+})
