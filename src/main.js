@@ -1,3 +1,5 @@
+import init from './view-controller/route.js'
+
 // configuracion de firebase
 export const initFirebase = () => {
     const firebaseConfig = {
@@ -15,4 +17,4 @@ export const initFirebase = () => {
 window.addEventListener('load', () => {
   initFirebase()
   init()
-})
+});
