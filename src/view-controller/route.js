@@ -1,6 +1,7 @@
 import { components } from './view/index.js'
 
 export const changeView = (route) => {
+    
     switch (route) {
         case '#/': { return components.home() }
         case '#/mesero': { return components.order() }
