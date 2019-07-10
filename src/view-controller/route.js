@@ -11,7 +11,7 @@ const changetmp = (hash) => {
     }
 }
 
-export const changeView = (route) => {
+const changeView = (route) => {
     const root = document.getElementById("root");
     root.innerHTML = "";
     switch (route) {
@@ -28,4 +28,3 @@ export const init = () => {
     window.addEventListener('load',changetmp(window.location.hash))
     if(("onhashchange" in window)) window.onhashchange = () => changetmp(window.location.hash)
 }
-
