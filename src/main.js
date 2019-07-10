@@ -1,4 +1,4 @@
-import init from './view-controller/route.js'
+import {init} from './view-controller/route.js'
 
 // configuracion de firebase
 export const initFirebase = () => {

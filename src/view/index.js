@@ -1,7 +1,7 @@
-import home from './home.js';
-import order from './order.js';
+import Home from './home.js';
+import Order from './order.js';
 
 export const components = {
-    home: home,
-    order: order
+    home: Home,
+    order: Order
 }

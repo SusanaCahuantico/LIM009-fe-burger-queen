@@ -3,7 +3,7 @@ export default () => {
  const createDiv = document.createElement('div');
  const home = `
  <section>
-   <p> "Bienvenidos a Burger Queen" </p>
+    <p> "Bienvenidos a Burger Queen" </p>
    <div>
      <a href='#/mesero'> Mesero <a>
      <a href='#/cocinero'> Cocinero </a>
@@ -13,6 +13,5 @@ export default () => {
  
  createDiv.innerHTML = home;
 
- console.log('home')
  return createDiv
 }
