@@ -1,3 +1,5 @@
+import {getCarta} from '../controller/firebase.js';
+
 export default () => {
     const createDiv = document.createElement('div');
     const order = `
@@ -5,7 +7,7 @@ export default () => {
     <h1> BURGER QUEEN </h1>
     </header>
     <section>
-    <button id="btn-desayuno"> Desayuno </button>
+    <button id="btn-desayuno"> Desayunar </button>
     <button id="btn-ac"> Almuerzo y cena </button>
     </section>
     <div id="contenido">  </div>
@@ -19,15 +21,15 @@ export default () => {
     `;
     createDiv.innerHTML = order;
 
-    const btnDesayuno = createDiv.querySelector('#btn-desayuno')
+    const btnDesayuno = createDiv.querySelector('#btn-desayuno');
     btnDesayuno.addEventListener('click', () => {
+        getCarta();
         const contenido = document.querySelector('#contenido')
         contenido.innerHTML = `
-        <button> Café Americano </button>
+         <button> Café Americano </button>
         <button> Café con leche </button>
         <button> Sandwich de jamón y queso </button>
-        <button> Jugo de frutas natural </button>
-
+        <button> Jugo de frutas natural </button> 
         `;
     })
 
@@ -46,6 +48,6 @@ export default () => {
         
         `
     })
-
+    
     return createDiv;
 }
