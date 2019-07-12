@@ -1,4 +1,4 @@
-import {getCarta} from '../controller/firebase.js';
+import {dataProduct} from '../controller/promises.js';
 
 export default () => {
     const createDiv = document.createElement('div');
@@ -23,10 +23,10 @@ export default () => {
 
     const btnDesayuno = createDiv.querySelector('#btn-desayuno');
     btnDesayuno.addEventListener('click', () => {
-        getCarta();
+        dataProduct();
         const contenido = document.querySelector('#contenido')
         contenido.innerHTML = `
-         <button> Café Americano </button>
+        <button> Café Americano </button>
         <button> Café con leche </button>
         <button> Sandwich de jamón y queso </button>
         <button> Jugo de frutas natural </button> 
