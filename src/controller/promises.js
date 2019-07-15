@@ -1,8 +1,8 @@
-import {getProduct} from './firebase.js';
+/* import {getProduct} from './firebase.js';
 
 export const dataProduct = () => {
     getProduct()
-    .then(function(querySnapshot) {
+    .then((querySnapshot) => {
         const array = [];
         querySnapshot.forEach(function(doc) {
             array.push({
@@ -11,7 +11,9 @@ export const dataProduct = () => {
             })
             // doc.data() is never undefined for query doc snapshots
         });
-       // return array;
-     console.log(array);
+        return array;
+     //console.log(array);
     });
+    
 }
+*/
