@@ -1,36 +1,50 @@
-import {dataProduct} from '../controller/promises.js';
+//import {getProduct} from '../controller/firebase.js';
+import {WhereProduct} from '../controller/firebase.js'
+
 
 export default () => {
+    
     const createDiv = document.createElement('div');
     const order = `
     <header>
-    <h1> BURGER QUEEN </h1>
+        <h1> BURGER QUEEN </h1>
     </header>
     <section>
-    <button id="btn-desayuno"> Desayunar </button>
-    <button id="btn-ac"> Almuerzo y cena </button>
+        <button id="btn-desayuno"> Desayunar </button>
+        <button id="btn-ac"> Almuerzo y cena </button>
     </section>
     <div id="contenido">  </div>
     <section>
-    <p> Nombre del cliente </p>
-    <input type="text" placeholder="Nombre del cliente"/>
-    <p> N° de mesa </p> 
-    <input type="text" placeholder="N° de mesa"/>
-    <p> Total S/0.00 <p>
+        <p> Nombre del cliente </p>
+        <input type="text" placeholder="Nombre del cliente"/>
+        <p> N° de mesa </p> 
+        <input type="text" placeholder="N° de mesa"/>
+        <p> Total S/0.00 <p>
     </section>
     `;
     createDiv.innerHTML = order;
 
     const btnDesayuno = createDiv.querySelector('#btn-desayuno');
     btnDesayuno.addEventListener('click', () => {
-        dataProduct();
-        const contenido = document.querySelector('#contenido')
-        contenido.innerHTML = `
-        <button> Café Americano </button>
-        <button> Café con leche </button>
-        <button> Sandwich de jamón y queso </button>
-        <button> Jugo de frutas natural </button> 
-        `;
+        WhereProduct()
+        .then((querySnapshot) => {
+            const array = [];
+            querySnapshot.forEach((doc) => {
+                array.push({
+                    id: doc.id,
+                    datos: doc.data()
+                }); 
+            })
+            // return array;
+                //console.log(array);
+                const contenido = document.querySelector('#contenido');
+                contenido.innerHTML = '';
+                array.forEach((element) => {                    
+                    contenido.innerHTML += `    
+                    <button> ${element.datos.Nombre} </button>
+                    `;
+                }) 
+            });     
     })
 
     const btnAc = createDiv.querySelector('#btn-ac')
@@ -47,7 +61,6 @@ export default () => {
         <button> bebida/gaseosa 750ml </button>
         
         `
-    })
-    
+    })    
     return createDiv;
 }
