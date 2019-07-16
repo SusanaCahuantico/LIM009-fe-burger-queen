@@ -1,6 +1,4 @@
-//import {getProduct} from '../controller/firebase.js';
 import {WhereProduct} from '../controller/firebase.js'
-
 
 export default () => {
     
@@ -26,7 +24,7 @@ export default () => {
 
     const btnDesayuno = createDiv.querySelector('#btn-desayuno');
     btnDesayuno.addEventListener('click', () => {
-        WhereProduct()
+        WhereProduct("Desayuno")
         .then((querySnapshot) => {
             const array = [];
             querySnapshot.forEach((doc) => {
@@ -49,18 +47,29 @@ export default () => {
 
     const btnAc = createDiv.querySelector('#btn-ac')
     btnAc.addEventListener('click', () => {
-        const contenido = document.querySelector('#contenido')
-        contenido.innerHTML=`
-        <button> Hamburguesa simple </button>
-        <button> Hamburguesa doble </button>
-        <button> Papas fritas </button>
-        <button> Aros de cebolla </button>
-        <button> Agua 500ml </button>
-        <button> Agua 750ml  </button>
-        <button> bebida/gaseosa 500ml </button>
-        <button> bebida/gaseosa 750ml </button>
-        
-        `
-    })    
+        WhereProduct("Almuerzo y cena")
+        .then((querySnapshot) => {
+            const array = [];
+            querySnapshot.forEach((doc) => {
+                array.push({
+                    id: doc.id,
+                    datos: doc.data()
+                }); 
+            })
+            // return array;
+                //console.log(array);
+                const contenido = document.querySelector('#contenido');
+                contenido.innerHTML = '';
+                let templates = '';
+                array.forEach((element) => {  
+                    console.log(element.id)                 
+                    let producto = `    
+                    <button id="${element.id}"> ${element.datos.Nombre} </button>
+                    `;
+                    templates += producto;
+                })
+                contenido.innerHTML = templates;
+            }); 
+    })   
     return createDiv;
 }

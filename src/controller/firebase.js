@@ -1,10 +1,4 @@
-
-export const getProduct = () => {
-    return firebase.firestore().collection("Productos").get()
- } 
  
- export const WhereProduct = () => {
-     return firebase.firestore().collection("Productos").where("Categoría", "==", "Desayuno").get()
+ export const WhereProduct = (category) => {
+     return firebase.firestore().collection("Productos").where("Categoría", "==", category).get()
  }
- 
- 
