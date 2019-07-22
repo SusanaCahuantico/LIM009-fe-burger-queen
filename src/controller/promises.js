@@ -1,19 +1,29 @@
-/* import {getProduct} from './firebase.js';
+/*import {WhereProduct} from './firebase.js';
 
 export const dataProduct = () => {
-    getProduct()
+    WhereProduct("Desayuno")
     .then((querySnapshot) => {
         const array = [];
-        querySnapshot.forEach(function(doc) {
+        querySnapshot.forEach((doc) => {
             array.push({
                 id: doc.id,
                 datos: doc.data()
             })
-            // doc.data() is never undefined for query doc snapshots
         });
         return array;
      //console.log(array);
-    });
-    
+    });    
 }
 */
+
+/*
+WhereProduct("Desayuno")
+    .then((querySnapshot) => {
+        const array = [];
+        querySnapshot.forEach((doc) => {
+            array.push({
+                id: doc.id,
+                datos: doc.data()
+            }); 
+        })
+*/        
