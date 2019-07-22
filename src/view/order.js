@@ -24,9 +24,7 @@ export default () => {
     <div id="products"> </div>
     <p> Precio </p>
     </div>
-    <div> <h1> Total S/ <h1> 
-    <p id="total"> </p>
-    </div>
+    <div> <h1> Total S/<p id="total"> </p> <h1> </div>
     <button> Enviar a cocina </button>
     </section>
     </section>
