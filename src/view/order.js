@@ -1,22 +1,12 @@
 import { dataProduct } from '../controller/functions.js'
 
 let array1 = [];
-/*
-const createInput = () => {
-  const create = document.createElement('div');
-  create.innerHTML = `
-  <p> Hola <p>
-  `    
-}
-*/
+
 const createButton = (objproducto) => {
-  console.log(objproducto)
+  //console.log(objproducto)
+  
     const createButton = document.createElement("button");
     createButton.div = objproducto.datos.Tipo;
-    /*(createButton.div).forEach(ele => {
-      return 
-    })*/
-    // console.log(createButton)
     createButton.innerHTML = objproducto.datos.Nombre;
     createButton.id = objproducto.id;
     createButton.precio = objproducto.datos.Precio;
@@ -24,16 +14,25 @@ const createButton = (objproducto) => {
      const createBtn = e.target.id;
      switch (createBtn) {
        case ('HYLEqOtNeTj3sEzBtabZ'):
-         const createDiv = document.createElement('div'); 
-         const crea =  `<button>  ${createButton.div} </button>`
-         createDiv.innerHTML = crea;
-         contenido.insertBefore(createDiv, createButton.nextSibling)
+         category()
+         const createDiv = document.createElement('div');
+         createDiv.id = "adicional"; 
+         (createButton.div).forEach(ele => {
+           //console.log(ele)
+           const crea = `
+           <button> ${ele} </button>
+           `;
+           createDiv.innerHTML += crea;
+           contenido.insertBefore(createDiv, createButton.nextSibling)    
+         })
          break;
        case ('s3XmdNPPmSKupPjBj5IQ'):
          const createDivo = document.createElement('div');
-         const create =  `<button>  ${createButton.div} </button>`
-         createDivo.innerHTML = create;
+         (createButton.div).forEach(ele => {
+         const create =  `<button>  ${ele} </button>`
+         createDivo.innerHTML += create;
          contenido.insertBefore(createDivo, createButton.nextSibling)
+         })
          break;
      } 
         const prodSelec = createButton.precio;
@@ -46,9 +45,7 @@ const createButton = (objproducto) => {
 
         total.innerHTML = suma(array1)
     })
-    /* createButton.addEventListener ("click", () => {
-        functionOfButton()
-    }) */
+   
     return createButton;
 }
 
@@ -58,22 +55,26 @@ const suma = (arr) => {
       acum = acum + elemento;
     })
     return acum;
-  }
+}
 
 const category = () => {
-  dataProduct("Adicional")
-  .then(res => {
-     console.log(res)
-       /* const arrayAc = res;
-       contenido.innerHTML='';
-       arrayAc.forEach(element => {
-         contenido.appendChild(createButton(element.datos.Nombre, element.id, element.datos.Precio))
-       //  console.log(createButton(element.datos.Nombre, element.id))
-       })*/
-    }) 
-
-//total.innerHTML = suma(array1)
-  }
+        dataProduct("Adicional")
+     .then(res1 => {
+       console.log(res1)
+      const arrayA = res1;
+       arrayA.forEach(elem => {
+        const opcion = elem.datos.Opción;
+        opcion.forEach(opc => {
+         // console.log(opc)
+          const createDivo = document.createElement('div');
+          const opciones =  `<button>  ${opc} </button>`
+          console.log(opc)
+          createDivo.innerHTML += opciones;
+          contenido.insertBefore(createDivo, opciones.nextSibling)
+        })
+       })
+      })
+}
 
 export default () => {
     const createDiv = document.createElement('div');
@@ -82,12 +83,12 @@ export default () => {
     <header>
     <h1> BURGER QUEEN </h1>
     </header>
-    <section class="col-lg-6">
-        <button id="btn-desayuno" class="col-md-3"> Desayuno </button>
-        <button id="btn-ac" class="col-lg-3"> Almuerzo y cena </button>
-        <div id="contenido" class="col-lg-4">  </div>
+    <section class="col-6">
+        <button id="btn-desayuno" class="col-3"> Desayuno </button>
+        <button id="btn-ac" class="col-3"> Almuerzo y cena </button>
+        <div id="contenido" class="col-4">  </div>
     </section>
-    <section class="col-lg-6">
+    <section class="col-6">
         <p> Nombre del cliente <input type="text" name="nombre" required> </p>
         <p> N° de mesa  <input type="number" name="nombre" required> </p> 
         <section> 
@@ -107,7 +108,6 @@ export default () => {
     const btnDesayuno = createDiv.querySelector('#btn-desayuno');
     btnDesayuno.addEventListener('click', () => {
         dataProduct("Desayuno")
-        
         .then(res => {
            //  console.log(res)
              const arrayAc = res;
@@ -124,15 +124,13 @@ export default () => {
     btnAc.addEventListener('click', () => {
      dataProduct("Almuerzo y cena")
      .then(res => {
-         console.log(res)
+         //console.log(res)
           const arrayAc = res;
           contenido.innerHTML='';
           arrayAc.forEach(element => {
             contenido.appendChild(createButton(element))
        })
-     dataProduct("Adicional")
-     .then(res1 => {console.log(res1)})
-    })      
+    })
   })
   return createDiv;
   }
