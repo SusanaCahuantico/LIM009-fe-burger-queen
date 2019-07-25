@@ -16,20 +16,20 @@ const createButton = (objproducto) => {
     createDiv.appendChild(createButton)
     createButton.addEventListener('click', (e)=>{
      const createBtn = e.target.id;
-     //console.log(createBtn)
-     //if(createBtn){
-     switch (createBtn) {
-      case ('s3XmdNPPmSKupPjBj5IQ'): 
-      case ('HYLEqOtNeTj3sEzBtabZ'):
-         const div = document.querySelector('#div-add'+createBtn)
+     if(createBtn){
+       switch (createBtn) {
+      
+        case ('s3XmdNPPmSKupPjBj5IQ'): 
+        case ('HYLEqOtNeTj3sEzBtabZ'):
+          const div = document.querySelector('#div-add'+ createBtn)
          //div.style.display = "block";
          //console.log(div)
-         category()
+          category()
+           const createDiv = document.createElement('div');
          createDiv.id = createBtn; 
          const createDiv = document.createElement('div');
          (createButton.div).forEach(ele => {
            //console.log(ele)
-           //const creatediv = document.createElement('div');
            const crea = `
            <button id="btn-${ele}"> ${ele} </button>
            `;
