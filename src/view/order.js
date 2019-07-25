@@ -16,21 +16,33 @@ const createButton = (objproducto) => {
     createDiv.appendChild(createButton)
     createButton.addEventListener('click', (e)=>{
      const createBtn = e.target.id;
-     if(createBtn){
-       switch (createBtn) {
-      
+    // if(createBtn){
+       switch (createBtn) {  
         case ('s3XmdNPPmSKupPjBj5IQ'): 
         case ('HYLEqOtNeTj3sEzBtabZ'):
           const div = document.querySelector('#div-add'+ createBtn)
          //div.style.display = "block";
          //console.log(div)
-          category()
+          //category()
            const createDiv = document.createElement('div');
          createDiv.id = createBtn; 
-         const createDiv = document.createElement('div');
          (createButton.div).forEach(ele => {
            //console.log(ele)
-           const crea = `
+           const createBtnEle = document.createElement("button")
+           createBtnEle.id=createBtn+ele;
+           createBtnEle.innerHTML = ele;
+           console.log(createBtnEle.id)
+           div.appendChild(createBtnEle)
+           createBtnEle.addEventListener('click', () => {
+            const prodSelec = createButton.precio;
+      products.innerHTML += `<div> 
+      <li><input type="checkbox"/> ${objproducto.datos.Nombre} de ${ele} ${objproducto.datos.Precio} <a id=""><img src="./image/delete-button.png"/></a></li> 
+      </div> `;  
+      array1.push(prodSelec);
+      const total = document.querySelector('#total');
+      total.innerHTML = suma(array1) 
+           }) 
+          /* const crea = `
            <button id="btn-${ele}"> ${ele} </button>
            `;
            div.innerHTML += crea;
@@ -40,19 +52,21 @@ const createButton = (objproducto) => {
              btnHs.addEventListener('click', () => {
               //const evento = event.target; 
               console.log('hola')
-             })
+             }) */
            //contenido.appendChild(div)    
          })
          break;
-      }
-    //}
-        const prodSelec = createButton.precio;
-        products.innerHTML += `<div> 
-        <li><input type="checkbox"/> ${objproducto.datos.Nombre} ${objproducto.datos.Precio} <a id=""><img src="./image/delete-button.png"/></a></li> 
-        </div> `;  
-        array1.push(prodSelec);
-        const total = document.querySelector('#total');
-        total.innerHTML = suma(array1)
+      default: 
+      const prodSelec = createButton.precio;
+      products.innerHTML += `<div> 
+      <li><input type="checkbox"/> ${objproducto.datos.Nombre} ${objproducto.datos.Precio} <a id=""><img src="./image/delete-button.png"/></a></li> 
+      </div> `;  
+      array1.push(prodSelec);
+      const total = document.querySelector('#total');
+      total.innerHTML = suma(array1)
+        
+      break;
+    } 
     })
     return createDiv;
 }
@@ -73,9 +87,9 @@ const category = () => {
        arrayA.forEach(elem => {
         const opcion = elem.datos.Opción;
         const precio = elem.datos.Precio;
-        console.log(precio)
+        //console.log(precio)
         opcion.forEach(opc => {
-         console.log(opc)
+         //console.log(opc)
           const createDivo = document.createElement('div');
           const opciones =  `<button id="btn-${opc}">  ${opc} </button>`
           //console.log(opc)
