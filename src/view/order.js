@@ -16,7 +16,8 @@ const createButton = (objproducto) => {
     createDiv.appendChild(createButton)
     createButton.addEventListener('click', (e)=>{
      const createBtn = e.target.id;
-     if(createBtn){
+     //console.log(createBtn)
+     //if(createBtn){
      switch (createBtn) {
       case ('s3XmdNPPmSKupPjBj5IQ'): 
       case ('HYLEqOtNeTj3sEzBtabZ'):
@@ -24,10 +25,11 @@ const createButton = (objproducto) => {
          //div.style.display = "block";
          //console.log(div)
          category()
-         const createDiv = document.createElement('div');
          createDiv.id = createBtn; 
+         const createDiv = document.createElement('div');
          (createButton.div).forEach(ele => {
-           console.log(ele)
+           //console.log(ele)
+           //const creatediv = document.createElement('div');
            const crea = `
            <button id="btn-${ele}"> ${ele} </button>
            `;
@@ -42,7 +44,8 @@ const createButton = (objproducto) => {
            //contenido.appendChild(div)    
          })
          break;
-      }}
+      }
+    //}
         const prodSelec = createButton.precio;
         products.innerHTML += `<div> 
         <li><input type="checkbox"/> ${objproducto.datos.Nombre} ${objproducto.datos.Precio} <a id=""><img src="./image/delete-button.png"/></a></li> 
@@ -100,8 +103,8 @@ export default () => {
         <div id="contenido" class="col-4">  </div>
     </section>
     <section class="col-6">
-        <p> Nombre del cliente <input type="text" name="nombre" required> </p>
-        <p> N° de mesa  <input type="number" name="nombre" required> </p> 
+        <p> Nombre del cliente <input id="nombre" type="text" name="nombre" required> </p>
+        <p> N° de mesa  <input id="mesa" type="number" name="nombre" required> </p> 
         <section> 
            <div id="cantidad" class="col-md-4"> Cantidad </div>
            <div id="products" class="col-md-4"> Productos </div>
@@ -143,5 +146,16 @@ export default () => {
        })
     })
   })
+
+   const nombre = createDiv.querySelector('#nombre')
+   nombre.addEventListener('click', () => {
+     console.log('hola soy nombre')
+   })
+
+   const mesa = createDiv.querySelector('#mesa')
+   mesa.addEventListener('click', () => {
+     console.log('mesa')
+   })
+
   return createDiv;
   }
