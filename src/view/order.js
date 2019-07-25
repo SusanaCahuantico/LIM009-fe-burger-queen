@@ -4,49 +4,54 @@ let array1 = [];
 
 const createButton = (objproducto) => {
   //console.log(objproducto)
-  
+    const createDiv = document.createElement("div");
+    createDiv.id = 'div-add' + objproducto.id;
+   // console.log(createDiv.id)
+    createDiv.className = "product";
     const createButton = document.createElement("button");
     createButton.div = objproducto.datos.Tipo;
     createButton.innerHTML = objproducto.datos.Nombre;
     createButton.id = objproducto.id;
     createButton.precio = objproducto.datos.Precio;
+    createDiv.appendChild(createButton)
     createButton.addEventListener('click', (e)=>{
      const createBtn = e.target.id;
+     if(createBtn){
      switch (createBtn) {
-       case ('HYLEqOtNeTj3sEzBtabZ'):
+      case ('s3XmdNPPmSKupPjBj5IQ'): 
+      case ('HYLEqOtNeTj3sEzBtabZ'):
+         const div = document.querySelector('#div-add'+createBtn)
+         //div.style.display = "block";
+         //console.log(div)
          category()
          const createDiv = document.createElement('div');
-         createDiv.id = "adicional"; 
+         createDiv.id = createBtn; 
          (createButton.div).forEach(ele => {
-           //console.log(ele)
+           console.log(ele)
            const crea = `
-           <button> ${ele} </button>
+           <button id="btn-${ele}"> ${ele} </button>
            `;
-           createDiv.innerHTML += crea;
-           contenido.insertBefore(createDiv, createButton.nextSibling)    
+           div.innerHTML += crea;
+           contenido.insertBefore(div, createButton.nextSibling)
+           const btnHs = document.querySelector(`#btn-${ele}`)
+           console.log(btnHs)
+             btnHs.addEventListener('click', () => {
+              //const evento = event.target; 
+              console.log('hola')
+             })
+           //contenido.appendChild(div)    
          })
          break;
-       case ('s3XmdNPPmSKupPjBj5IQ'):
-         const createDivo = document.createElement('div');
-         (createButton.div).forEach(ele => {
-         const create =  `<button>  ${ele} </button>`
-         createDivo.innerHTML += create;
-         contenido.insertBefore(createDivo, createButton.nextSibling)
-         })
-         break;
-     } 
+      }}
         const prodSelec = createButton.precio;
-        products.innerHTML += `
-        <div> 
-          <li><input type="checkbox"/> ${objproducto.datos.Nombre} ${objproducto.datos.Precio}</li> 
+        products.innerHTML += `<div> 
+        <li><input type="checkbox"/> ${objproducto.datos.Nombre} ${objproducto.datos.Precio} <a id=""><img src="./image/delete-button.png"/></a></li> 
         </div> `;  
         array1.push(prodSelec);
         const total = document.querySelector('#total');
-
         total.innerHTML = suma(array1)
     })
-   
-    return createButton;
+    return createDiv;
 }
 
 const suma = (arr) => {
@@ -60,17 +65,23 @@ const suma = (arr) => {
 const category = () => {
         dataProduct("Adicional")
      .then(res1 => {
-       console.log(res1)
+       //console.log(res1)
       const arrayA = res1;
        arrayA.forEach(elem => {
         const opcion = elem.datos.Opción;
+        const precio = elem.datos.Precio;
+        console.log(precio)
         opcion.forEach(opc => {
-         // console.log(opc)
+         console.log(opc)
           const createDivo = document.createElement('div');
-          const opciones =  `<button>  ${opc} </button>`
-          console.log(opc)
+          const opciones =  `<button id="btn-${opc}">  ${opc} </button>`
+          //console.log(opc)
           createDivo.innerHTML += opciones;
           contenido.insertBefore(createDivo, opciones.nextSibling)
+          const btnAdic = document.querySelector(`#btn-${opc}`)
+          btnAdic.addEventListener('click', () => {
+            console.log('hola')
+          })
         })
        })
       })
