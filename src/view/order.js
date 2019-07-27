@@ -17,54 +17,56 @@ const createButton = (objproducto) => {
     createButton.addEventListener('click', (e)=>{
      const createBtn = e.target.id;
     // if(createBtn){
-       switch (createBtn) {  
+       switch (createBtn){  
         case ('s3XmdNPPmSKupPjBj5IQ'): 
         case ('HYLEqOtNeTj3sEzBtabZ'):
           const div = document.querySelector('#div-add'+ createBtn)
-         //div.style.display = "block";
-         //console.log(div)
-          //category()
-           const createDiv = document.createElement('div');
-         createDiv.id = createBtn; 
-         (createButton.div).forEach(ele => {
-           //console.log(ele)
-           const createBtnEle = document.createElement("button")
-           createBtnEle.id=createBtn+ele;
-           createBtnEle.innerHTML = ele;
-           console.log(createBtnEle.id)
-           div.appendChild(createBtnEle)
-           createBtnEle.addEventListener('click', () => {
-            const prodSelec = createButton.precio;
-      products.innerHTML += `<div> 
-      <li><input type="checkbox"/> ${objproducto.datos.Nombre} de ${ele} ${objproducto.datos.Precio} <a id=""><img src="./image/delete-button.png"/></a></li> 
-      </div> `;  
-      array1.push(prodSelec);
+          category(div, createBtn)
+        const createDiv = document.createElement('div');
+        createDiv.id = createBtn; 
+        (createButton.div).forEach(ele => {
+        //console.log(ele)
+        const createBtnEle = document.createElement("button")
+        createBtnEle.id=createBtn+ele;
+        createBtnEle.innerHTML = ele;
+        //console.log(createBtnEle.id)
+        div.appendChild(createBtnEle)
+        createBtnEle.addEventListener('click', () => {
+        //const prodSelec = createButton.precio;
+        const prodSelecId = createBtn;
+      products.innerHTML +=
+      `<div> 
+      <li><input type="checkbox"/> <p> ${objproducto.datos.Nombre} de ${ele} ${objproducto.datos.Precio} <a id=""><img src="./image/delete-button.png"/></a></li> 
+      </div>`;  
+      array1.push(prodSelecId);
       const total = document.querySelector('#total');
-      total.innerHTML = suma(array1) 
-           }) 
-          /* const crea = `
-           <button id="btn-${ele}"> ${ele} </button>
+      total.innerHTML = suma(array1)
+      localStorage.setItem( "Pedido", JSON.stringify(array1)) 
+          }) 
+        /* const crea = `
+         <button id="btn-${ele}"> ${ele} </button>
            `;
-           div.innerHTML += crea;
-           contenido.insertBefore(div, createButton.nextSibling)
-           const btnHs = document.querySelector(`#btn-${ele}`)
-           console.log(btnHs)
-             btnHs.addEventListener('click', () => {
-              //const evento = event.target; 
-              console.log('hola')
-             }) */
-           //contenido.appendChild(div)    
+         div.innerHTML += crea;
+          contenido.insertBefore(div, createButton.nextSibling)
+          const btnHs = document.querySelector(`#btn-${ele}`)
+          console.log(btnHs)
+          btnHs.addEventListener('click', () => {
+          //const evento = event.target; 
+         console.log('hola')
+         }) */
+         //contenido.appendChild(div)    
          })
          break;
       default: 
-      const prodSelec = createButton.precio;
+     // const prodSelec = createButton.precio;
+      const prodSelecId = createBtn;
       products.innerHTML += `<div> 
       <li><input type="checkbox"/> ${objproducto.datos.Nombre} ${objproducto.datos.Precio} <a id=""><img src="./image/delete-button.png"/></a></li> 
       </div> `;  
-      array1.push(prodSelec);
+      array1.push(prodSelecId);
       const total = document.querySelector('#total');
       total.innerHTML = suma(array1)
-        
+      localStorage.setItem( "Pedido", JSON.stringify(array1)) 
       break;
     } 
     })
@@ -79,26 +81,35 @@ const suma = (arr) => {
     return acum;
 }
 
-const category = () => {
-        dataProduct("Adicional")
+const category = (div, idButton) => {
+    dataProduct("Adicional")
      .then(res1 => {
-       //console.log(res1)
+      //console.log(res1)
       const arrayA = res1;
-       arrayA.forEach(elem => {
+      arrayA.forEach(elem => {
         const opcion = elem.datos.Opción;
         const precio = elem.datos.Precio;
-        //console.log(precio)
-        opcion.forEach(opc => {
-         //console.log(opc)
-          const createDivo = document.createElement('div');
-          const opciones =  `<button id="btn-${opc}">  ${opc} </button>`
+      opcion.forEach(opc => {
+       //  console.log(opc)
+       // const createDivo = document.createElement('div');
+        const buttonAdicional = document.createElement('button');
+        buttonAdicional.id = idButton+opc;
+       //console.log(buttonAdicional.id)
+       buttonAdicional.innerHTML = opc;
+       console.log(buttonAdicional.innerHTML)
+       div.appendChild(buttonAdicional)
+       buttonAdicional.addEventListener('click', () => {
+        console.log('soy huevo y queso')  
+       array1.push(precio)
+       })
+       // const opciones =  `<button id="btn-${opc}">  ${opc} </button>`
           //console.log(opc)
-          createDivo.innerHTML += opciones;
-          contenido.insertBefore(createDivo, opciones.nextSibling)
-          const btnAdic = document.querySelector(`#btn-${opc}`)
-          btnAdic.addEventListener('click', () => {
-            console.log('hola')
-          })
+        //createDivo.innerHTML += opciones;
+       //div.insertBefore(createDivo, opciones.nextSibling)
+       // const btnAdic = document.querySelector(`#btn-${opc}`)
+       // btnAdic.addEventListener('click', () => {
+        //console.log('hola soy adicional')
+         // })
         })
        })
       })
