@@ -7,7 +7,7 @@ const createButton = (objproducto) => {
     const createDiv = document.createElement("div");
     createDiv.id = 'div-add' + objproducto.id;
    // console.log(createDiv.id)
-    createDiv.className = "product";
+    createDiv.className = "product col-3";
     const createButton = document.createElement("button");
     createButton.div = objproducto.datos.Tipo;
     createButton.innerHTML = objproducto.datos.Nombre;
@@ -29,6 +29,7 @@ const createButton = (objproducto) => {
         const createBtnEle = document.createElement("button")
         createBtnEle.id=createBtn+ele;
         createBtnEle.innerHTML = ele;
+        //createBtnEle.className = "btnEle col-3";
         //console.log(createBtnEle.id)
         div.appendChild(createBtnEle)
         createBtnEle.addEventListener('click', () => {
@@ -42,19 +43,7 @@ const createButton = (objproducto) => {
       const total = document.querySelector('#total');
       total.innerHTML = suma(array1)
       localStorage.setItem( "Pedido", JSON.stringify(array1)) 
-          }) 
-        /* const crea = `
-         <button id="btn-${ele}"> ${ele} </button>
-           `;
-         div.innerHTML += crea;
-          contenido.insertBefore(div, createButton.nextSibling)
-          const btnHs = document.querySelector(`#btn-${ele}`)
-          console.log(btnHs)
-          btnHs.addEventListener('click', () => {
-          //const evento = event.target; 
-         console.log('hola')
-         }) */
-         //contenido.appendChild(div)    
+          })    
          })
          break;
       default: 
@@ -102,14 +91,6 @@ const category = (div, idButton) => {
         console.log('soy huevo y queso')  
        array1.push(precio)
        })
-       // const opciones =  `<button id="btn-${opc}">  ${opc} </button>`
-          //console.log(opc)
-        //createDivo.innerHTML += opciones;
-       //div.insertBefore(createDivo, opciones.nextSibling)
-       // const btnAdic = document.querySelector(`#btn-${opc}`)
-       // btnAdic.addEventListener('click', () => {
-        //console.log('hola soy adicional')
-         // })
         })
        })
       })
@@ -118,14 +99,14 @@ const category = (div, idButton) => {
 export default () => {
     const createDiv = document.createElement('div');
     const order = `
-    <section class="col-lg">
+    <section class="col-12">
     <header>
     <h1> BURGER QUEEN </h1>
     </header>
     <section class="col-6">
-        <button id="btn-desayuno" class="col-3"> Desayuno </button>
-        <button id="btn-ac" class="col-3"> Almuerzo y cena </button>
-        <div id="contenido" class="col-4">  </div>
+        <button id="btn-desayuno" class="col-6"> Desayuno </button>
+        <button id="btn-ac" class="col-6"> Almuerzo y cena </button>
+        <div id="contenido" class="col-12">  </div>
     </section>
     <section class="col-6">
         <p> Nombre del cliente <input id="nombre" type="text" name="nombre" required> </p>
@@ -133,7 +114,7 @@ export default () => {
         <section> 
            <div id="cantidad" class="col-md-4"> Cantidad </div>
            <div id="products" class="col-md-4"> Productos </div>
-           <div class="col-md-4"> Precio </div>
+           <div class="col-4"> Precio </div>
         </div>
         <div> <h1> Total S/ <h1> 
         <p id="total"> </p>

@@ -3,10 +3,10 @@ export default () => {
  const createDiv = document.createElement('div');
  const home = `
  <section>
-    <p> "Bienvenidos a Burger Queen" </p>
+    <p class="burger col-12"> "Bienvenidos a Burger Queen" </p>
    <div>
-     <a href='#/mesero'> Mesero <a>
-     <a href='#/cocinero'> Cocinero </a>
+     <a href='#/mesero' class="mesero col-6"> Mesero <a>
+     <a href='#/cocinero' class="cocinero col-6"> Cocinero </a>
    </div> 
  </section>
  `;
