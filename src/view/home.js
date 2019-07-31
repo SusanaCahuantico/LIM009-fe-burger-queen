@@ -1,12 +1,12 @@
-
 export default () => {
  const createDiv = document.createElement('div');
  const home = `
  <section>
-    <p class="burger col-12"> "Bienvenidos a Burger Queen" </p>
-   <div>
-     <a href='#/mesero' class="mesero col-6"> Mesero <a>
-     <a href='#/cocinero' class="cocinero col-6"> Cocinero </a>
+    <h1 class="burger col-12"> "Bienvenidos a Burger Queen" </h1>
+    <img src="./image/burgerqueen.png" class="imgburger">
+   <div class="divmesero">
+     <a href='#/mesero' class="mesero col-4"> Mesero <a>
+     <a href='#/cocinero' class="mesero col-4"> Cocinero </a>
    </div> 
  </section>
  `;

@@ -38,3 +38,41 @@
     .col-3{width: 25%}
     .col-2{width: 16.66666667%;}
 }
+
+.mesero{
+      text-decoration: none;
+      padding: 20px;
+      font-weight: 600;
+      font-size: 28px;
+      color: #e6dde0;
+      background-color: #f341a9;
+      border-radius: 6px;
+      border: 2px solid #db4189;
+      margin: 50px;
+      text-align: center;
+    }
+    
+.mesero:hover{
+      color: #dfd7dc;
+      background-color: #b09fb8;
+    }
+
+.burger{
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    font-weight: 950;
+    text-align: center;
+    font-size: 50px;
+}
+
+.imgburger{
+    width: 500px;
+    display: block;
+    margin: auto;
+}
+
+.divmesero{
+    display: flex;
+    justify-content: center;
+}
