@@ -41,13 +41,13 @@
 
 .mesero{
       text-decoration: none;
-      padding: 20px;
-      font-weight: 600;
+      padding: 15px;
+      font-weight: 500;
       font-size: 28px;
       color: #e6dde0;
-      background-color: #f341a9;
+      background-color: #f06292;
       border-radius: 6px;
-      border: 2px solid #db4189;
+      border: 2px solid #f06292;
       margin: 50px;
       text-align: center;
     }
@@ -67,7 +67,7 @@
 }
 
 .imgburger{
-    width: 500px;
+    width: 400px;
     display: block;
     margin: auto;
 }
@@ -75,4 +75,31 @@
 .divmesero{
     display: flex;
     justify-content: center;
+}
+
+.burgerTitulo{
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    font-weight: 950;
+    text-align: left;
+    font-size: 50px;
+}
+
+h4{
+    align-content: center;
+    justify-content: center;
+    align-items: left;
+    font-weight: 700;
+    text-align: left;
+    font-size: 20px;
+}
+
+.mesa{
+    border-radius: 5px;   
+}
+
+input{
+    border-radius: 5px;
+    
 }
