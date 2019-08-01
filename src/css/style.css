@@ -103,3 +103,8 @@ input{
     border-radius: 5px;
     
 }
+
+.image{
+    width: 90px;
+    display: block;
+}
