@@ -11,6 +11,7 @@ import { dataProduct } from '../controller/functions.js'
 let array1 = [];
 
 const createButton = (objproducto) => {
+  //creando div para la imagen del producto
     const createDiv = document.createElement("div");
     createDiv.id = 'div-add' + objproducto.id;
     const image = document.createElement('img');
@@ -18,6 +19,8 @@ const createButton = (objproducto) => {
     image.className = 'image';
     createDiv.appendChild(image);
     createDiv.className = "product col-3";
+
+    //creando div dentro de los cuales se crea un boton por cada producto
     const createButton = document.createElement("button");
     console.log(createButton)
     createButton.div = objproducto.datos.Tipo;
@@ -25,15 +28,17 @@ const createButton = (objproducto) => {
     createButton.id = objproducto.id;
     createButton.precio = objproducto.datos.Precio;
     //console.log(img)
+    console.log(createButton.precio)
     createDiv.appendChild(createButton)
+
     createButton.addEventListener('click', (e)=>{
      const createBtn = e.target.id;
     //console.log(createBtn)
        switch (createBtn){  
         case ('s3XmdNPPmSKupPjBj5IQ'): 
         case ('HYLEqOtNeTj3sEzBtabZ'):
-          //console.log(objproducto.datos.Adicional)
-          const div = document.querySelector('#div-add'+ createBtn)    
+        //console.log(objproducto.datos.Adicional)
+        const div = document.querySelector('#div-add'+ createBtn)    
         const createDiv = document.createElement('div');
         createDiv.id = createBtn; 
         (createButton.div).forEach(ele => {
