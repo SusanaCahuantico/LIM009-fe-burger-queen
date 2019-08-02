@@ -1,13 +1,15 @@
 import { dataProduct } from '../controller/functions.js'
-
-/*let array2 = [
+/*
+let array2 = [
   {
     name: name, 
     precio: precio,
     id: id
   }
 ];
+console.log(array2)
 */
+
 let array1 = [];
 
 const createButton = (objproducto) => {
@@ -27,6 +29,14 @@ const createButton = (objproducto) => {
     //console.log(img)
     createDiv.appendChild(createButton)
     createButton.addEventListener('click', (e)=>{
+      const arrayDelLocalStorage = JSON.parse( localStorage.getItem("orden", []) );
+      arrayDelLocalStorage.push({
+        name: objproducto.datos.Nombre,
+        precio: objproducto.datos.Precio,
+        id: objproducto.id
+      });
+      localStorage.setItem("orden", arrayDelLocalStorage);
+      funcionQuePintaLaTablaDePedidos();
      const createBtn = e.target.id;
     //console.log(createBtn)
        switch (createBtn){  
@@ -44,7 +54,6 @@ const createButton = (objproducto) => {
         //createBtnEle.className = "btnEle col-3";
         div.appendChild(createBtnEle)
         createBtnEle.addEventListener('click', () => {
-          console.log(createBtnEle)
         const prodSelec = createButton.precio;
       products.innerHTML +=
       `<div id="removeProduct"> 
@@ -108,31 +117,7 @@ const suma = (arr) => {
     })
     return acum;
 }
-/*
-const category = (div, idButton) => {
-    dataProduct("Adicional")
-     .then(res1 => {
-     // console.log(res1)
-      const arrayA = res1;
-    arrayA.forEach(elem => {
-    const opcion = elem.datos.Nombre;
-    const precio = elem.datos.Precio;
-    console.log(opcion)
-    const buttonAdicional = document.createElement('button');
-    buttonAdicional.id = idButton;
-     //console.log(buttonAdicional.id)
-       buttonAdicional.innerHTML = opc;
-       //console.log(buttonAdicional.innerHTML)
-       div.appendChild(buttonAdicional)
-       buttonAdicional.addEventListener('click', () => {
-       array1.push(precio)
-       console.log(array1.push(precio))
-       console.log(array1)
-       })
-       })
-      })
-}
-*/
+
 export default () => {
     const createDiv = document.createElement('div');
     const order = `
