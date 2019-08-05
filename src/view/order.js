@@ -1,6 +1,7 @@
 import { dataProduct } from '../controller/functions.js'
 
 let array1 = [];
+//console.log(array1)
 let array2 = [];
 //let arrayOrder = [];
 //aqui pintas el Storage: JSON.parseInt
@@ -42,27 +43,27 @@ const array1Order = (objproducto, ele) => {
 }
 
 const createButton = (objproducto) => {
-  const createDiv = document.createElement("div");
-  //console.log(createDiv)
-  createDiv.id = 'div-add' + objproducto.id;
-  const image = document.createElement('img');
-  image.src = objproducto.datos.img;
-  image.className = 'image';
-  createDiv.appendChild(image);
-  createDiv.className = "product col-3";
-  const createButton = document.createElement("button");
-  createButton.div = objproducto.datos.Tipo;
-  createButton.innerHTML = objproducto.datos.Nombre;
-  createButton.id = objproducto.id;
-  createButton.precio = objproducto.datos.Precio;
-  createDiv.appendChild(createButton)
-  createButton.addEventListener('click', (e)=>{
-    const createBtn = e.target.id;
-    const div = document.querySelector('#div-add'+ createBtn)
-    //console.log(createBtn)
-    //aqui pintas el Storage: JSON.parseInt
-    // div.innerHTML = '';
-    switch (createBtn){  
+    const createDiv = document.createElement("div");
+    createDiv.id = 'div-add' + objproducto.id;
+    const image = document.createElement('img');
+    image.src = objproducto.datos.img;
+    image.className = 'image';
+    createDiv.appendChild(image);
+    createDiv.className = "product col-3";
+    const createButton = document.createElement("button");
+    //console.log(createButton)
+    createButton.div = objproducto.datos.Tipo;
+    createButton.innerHTML = objproducto.datos.Nombre;
+    createButton.id = objproducto.id;
+    createButton.precio = objproducto.datos.Precio;
+    //console.log(createButton)
+    createDiv.appendChild(createButton)
+    createButton.addEventListener('click', (e)=>{
+      const createBtn = e.target.id;
+          const div = document.querySelector('#div-add'+ createBtn)
+      //console.log(createBtn) identifica el boton a quien se hizo clic
+      //aqui pintas el Storage: JSON.parseInt
+      switch (createBtn){  
       case ('s3XmdNPPmSKupPjBj5IQ'): 
       case ('HYLEqOtNeTj3sEzBtabZ'):
         (createButton.div).forEach(ele => {
