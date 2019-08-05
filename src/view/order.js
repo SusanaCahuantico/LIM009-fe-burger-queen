@@ -5,50 +5,66 @@ let array2 = [];
 //let arrayOrder = [];
 //aqui pintas el Storage: JSON.parseInt
 const array1Order = (objproducto, ele) => {
+  //console.log(objproducto)
+ // console.log(ele.nombre)
+ // console.log(ele.precio)
+//  console.log(objproducto.datos.Adicional)
   if(objproducto.datos.Tipo != undefined){
     let objeto = {
       name: objproducto.datos.Nombre +' '+ ele,
       price: objproducto.datos.Precio,
-      id: objproducto.id
+      id: objproducto.id,
+     // adicional: ele.nombre
     }
     array1.push(objeto);
+   console.log(array1)
   } else {
     let objeto = {
       name: objproducto.datos.Nombre,
       price: objproducto.datos.Precio,
-      id: objproducto.id
-      }
-      array1.push(objeto);
-    };
-//console.log(objetoLocalStorage);
-//localStorage.setItem("orden", JSON.stringify(objetoLocalStorage));
- return array1;
+      id: objproducto.id,
+    }
+    array1.push(objeto);
+    console.log(array1)
+  };
+  products.innerHTML = '';
+  array1.forEach(elementos => {
+    const createList = document.createElement('li');
+    createList.innerHTML = elementos.name + ' ' + elementos.price;
+    const buttonList = document.createElement('button');
+    buttonList.innerHTML = 'x';
+    buttonList.id = elementos.id;
+    createList.appendChild(buttonList);
+    products.appendChild(createList);
+
+  })
+  return array1;
 }
 
 const createButton = (objproducto) => {
-    const createDiv = document.createElement("div");
-    //console.log(createDiv)
-    createDiv.id = 'div-add' + objproducto.id;
-    const image = document.createElement('img');
-    image.src = objproducto.datos.img;
-    image.className = 'image';
-    createDiv.appendChild(image);
-    createDiv.className = "product col-3";
-    const createButton = document.createElement("button");
-    createButton.div = objproducto.datos.Tipo;
-    createButton.innerHTML = objproducto.datos.Nombre;
-    createButton.id = objproducto.id;
-    createButton.precio = objproducto.datos.Precio;
-    createDiv.appendChild(createButton)
-    createButton.addEventListener('click', (e)=>{
-      const createBtn = e.target.id;
-      const div = document.querySelector('#div-add'+ createBtn)
-      //console.log(createBtn)
-      //aqui pintas el Storage: JSON.parseInt
-     // div.innerHTML = '';
-       switch (createBtn){  
-        case ('s3XmdNPPmSKupPjBj5IQ'): 
-        case ('HYLEqOtNeTj3sEzBtabZ'):
+  const createDiv = document.createElement("div");
+  //console.log(createDiv)
+  createDiv.id = 'div-add' + objproducto.id;
+  const image = document.createElement('img');
+  image.src = objproducto.datos.img;
+  image.className = 'image';
+  createDiv.appendChild(image);
+  createDiv.className = "product col-3";
+  const createButton = document.createElement("button");
+  createButton.div = objproducto.datos.Tipo;
+  createButton.innerHTML = objproducto.datos.Nombre;
+  createButton.id = objproducto.id;
+  createButton.precio = objproducto.datos.Precio;
+  createDiv.appendChild(createButton)
+  createButton.addEventListener('click', (e)=>{
+    const createBtn = e.target.id;
+    const div = document.querySelector('#div-add'+ createBtn)
+    //console.log(createBtn)
+    //aqui pintas el Storage: JSON.parseInt
+    // div.innerHTML = '';
+    switch (createBtn){  
+      case ('s3XmdNPPmSKupPjBj5IQ'): 
+      case ('HYLEqOtNeTj3sEzBtabZ'):
         (createButton.div).forEach(ele => {
           //res pollo y vegano
           const createBtnEle = document.createElement("button")
@@ -56,58 +72,59 @@ const createButton = (objproducto) => {
           createBtnEle.innerHTML = ele;
           div.appendChild(createBtnEle)
           createBtnEle.addEventListener('click', () => {
-            array1Order(objproducto)
+            array1Order(objproducto, ele)
             array2.push(objproducto.datos.Precio)
             const total = document.querySelector('#total');
-            total.innerHTML = suma(array2)
-            products.innerHTML += 
-            `<div id="removeProduct"> 
-            <li><input type="checkbox"/>${objproducto.datos.Nombre} de ${ele} ${objproducto.datos.Precio} <a id="delete-${createBtnEle.id}"><img src="./image/delete-button.png"/></a></li> 
-            </div>`;  
-          })    
-         })
-         const arrayAdic = objproducto.datos.Adicional;
+            total.innerHTML = suma(array2)  
+          })
+          const arrayAdic = objproducto.datos.Adicional;
           arrayAdic.forEach(elem => {
             //queso y huevo
             const btnAdicional = document.createElement('button')
+           // btnAdicional.type = 'checkbox';
             btnAdicional.id = 'btnAdicional'+elem.nombre;
             btnAdicional.innerHTML += `${elem.nombre}`;
             div.appendChild(btnAdicional)
             btnAdicional.addEventListener('click', () => {
+              //array1Order(objproducto, ele)
+              array1.push(elem.nombre)
               array2.push(elem.precio)
               products.innerHTML += `${elem.nombre}`;
               const total = document.querySelector('#total');
               total.innerHTML = suma(array2)
-            })
-          })
-         break;
-      default: 
-     array1Order(objproducto)
-    // console.log(objproducto.id)
-      array2.push(objproducto.datos.Precio)
-    const total = document.querySelector('#total');
-    total.innerHTML = suma(array2)
-      products.innerHTML += `<div id="removeProduct"> 
-      <li id="removeLi"><input type="checkbox"/> ${objproducto.datos.Nombre} ${objproducto.datos.Precio} <a id="delet-${objproducto.id}"> <img src="./image/delete-button.png"/> </a> </li> 
-      </div> `;  
-     // const divRemove = document.querySelector('#removeProduct');
-      //const liRemove = document.querySelector('#removeLi');
-     // divRemove.removeChild(liRemove);
-     break;
-    } 
-  })
+        })   
+      })
+        })
+        break;
+        default: 
+        array1Order(objproducto)
+        // console.log(objproducto.id)
+        array2.push(objproducto.datos.Precio)
+        const total = document.querySelector('#total');
+        total.innerHTML = suma(array2)
+        break;
+      } 
+    })
     return createDiv;
-}
-
-const suma = (arr) => {
+  }
+  /*
+  const deleteList = () => {
+    const delet = document.querySelector(`#delet-${objproducto.id}`)
+    delet.addEventListener('click', () => {
+      console.log('hola')
+    })
+    return deleteList
+  } */
+  
+  const suma = (arr) => {
     let acum = 0;
     arr.forEach(elemento => {
       acum = acum + elemento;
     })
     return acum;
-}
-
-export default () => {
+  }
+  
+  export default () => {
     const createDiv = document.createElement('div');
     //console.log(createDiv)
     const order = `
@@ -127,7 +144,9 @@ export default () => {
            <button class="productos col-md-4"> Cantidad </button>
            <button class="productos col-md-4"> Productos </button>
            <button class="productos col-4"> Precio </button>
-           <div id="products" class="col-12"></div>
+           <div id="" class="col-12">
+           <ul id=products> </ul>
+           </div>
         </div>
         <h1> Total S/ <p id="total"> </p> <h1> 
         <button id="enviar"> ENVIAR </button> 
