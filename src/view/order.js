@@ -1,17 +1,31 @@
 import { dataProduct } from '../controller/functions.js'
 
-/*let array2 = [
-  {
-    name: name, 
-    precio: precio,
-    id: id
-  }
-];
-*/
 let array1 = [];
+//console.log(array1)
+let array2 = [];
+//aqui pintas el Storage: JSON.parseInt
+const array1Order = (objproducto, ele) => {
+  if(objproducto.datos.Tipo != undefined){
+    let objeto = {
+      name: objproducto.datos.Nombre +' '+ ele,
+      price: objproducto.datos.Precio,
+      id: objproducto.id
+    }
+    array1.push(objeto);
+  } else {
+    let objeto = {
+      name: objproducto.datos.Nombre,
+      price: objproducto.datos.Precio,
+      id: objproducto.id
+      }
+      array1.push(objeto);
+    };
+//console.log(objetoLocalStorage);
+//localStorage.setItem("orden", JSON.stringify(objetoLocalStorage));
+ return array1;
+}
 
 const createButton = (objproducto) => {
-  //creando div para la imagen del producto
     const createDiv = document.createElement("div");
     createDiv.id = 'div-add' + objproducto.id;
     const image = document.createElement('img');
@@ -19,90 +33,83 @@ const createButton = (objproducto) => {
     image.className = 'image';
     createDiv.appendChild(image);
     createDiv.className = "product col-3";
-
-    //creando div dentro de los cuales se crea un boton por cada producto
     const createButton = document.createElement("button");
     //console.log(createButton)
     createButton.div = objproducto.datos.Tipo;
-    //console.log(createButton.div) [res, pollo, vegetariano]
     createButton.innerHTML = objproducto.datos.Nombre;
     createButton.id = objproducto.id;
     createButton.precio = objproducto.datos.Precio;
-    //console.log(img)
-    console.log(createButton.precio)
+    //console.log(createButton)
     createDiv.appendChild(createButton)
-
     createButton.addEventListener('click', (e)=>{
-     const createBtn = e.target.id;
-    //console.log(createBtn)
+      const createBtn = e.target.id;
+      //console.log(createBtn) identifica el boton a quien se hizo clic
+      //aqui pintas el Storage: JSON.parseInt
        switch (createBtn){  
         case ('s3XmdNPPmSKupPjBj5IQ'): 
         case ('HYLEqOtNeTj3sEzBtabZ'):
-        //console.log(objproducto.datos.Adicional)
+          //console.log(objproducto.datos.Adicional)
         const div = document.querySelector('#div-add'+ createBtn)    
         const createDiv = document.createElement('div');
-        createDiv.id = createBtn; 
+        createDiv.id = createBtn;
+        /* creando botones para res pollo vegano*/ 
         (createButton.div).forEach(ele => {
-        //res pollo y vegano
-        const createBtnEle = document.createElement("button")
-        createBtnEle.id=createBtn+ele;
-        createBtnEle.innerHTML = ele;
-        //createBtnEle.className = "btnEle col-3";
-        div.appendChild(createBtnEle)
-        createBtnEle.addEventListener('click', () => {
-        console.log(createBtnEle)
-        const prodSelec = createButton.precio;
-      products.innerHTML +=
+          console.log(createButton.div)
+          //res pollo y vegano
+          const createBtnEle = document.createElement("button")
+          createBtnEle.id=createBtn+ele;
+          createBtnEle.innerHTML = ele;
+          div.appendChild(createBtnEle)
+          createBtnEle.addEventListener('click', () => {
+            array1Order(objproducto, ele)
+            array2.push(objproducto.datos.Precio)
+            const total = document.querySelector('#total');
+            total.innerHTML = suma(array2)
+            //div.innerHTML = '';
+       products.innerHTML += 
       `<div id="removeProduct"> 
       <li><input type="checkbox"/> <p> ${objproducto.datos.Nombre} de ${ele} ${objproducto.datos.Precio} <a id="remove-${createBtnEle.id}"><img src="./image/delete-button.png"/></a></li> 
       </div>`;  
-      array1.push(prodSelec);
-      const total = document.querySelector('#total');
-      //const removeProduct = document.querySelector('#removeProduct')
-      total.innerHTML = suma(array1)
-      localStorage.setItem( "Pedido", JSON.stringify(array1))
-      /*const remove = document.querySelector(`#remove-${createBtnEle.id}`)
-      remove.addEventListener('click', () => {
-        removeProduct.removeChild(total)
-      })*/
           })    
          })
          const arrayAdic = objproducto.datos.Adicional;
           arrayAdic.forEach(elem => {
             //queso y huevo
             const btnAdicional = document.createElement('button')
-            console.log(btnAdicional)
             btnAdicional.id = 'btnAdicional'+elem.nombre;
             btnAdicional.innerHTML += `${elem.nombre}`;
             div.appendChild(btnAdicional)
             btnAdicional.addEventListener('click', () => {
+              console.log(elem.precio)
+              array2.push(elem.precio)
               const precioAdic = elem.precio;
               products.innerHTML += `${elem.nombre}`;
               const total = document.querySelector('#total');
-              array1.push(precioAdic);
-              total.innerHTML = suma(array1)
+              total.innerHTML = suma(array2)
             })
           })
          break;
       default: 
-     const prodSelec = createButton.precio;
-      //const prodSelec = createBtn;
-      //console.log(objproducto.id)
+     array1Order(objproducto)
+      //const prodSelec = createButton.precio;
+      //console.log(array1)
+      array2.push(objproducto.datos.Precio)
+      const total = document.querySelector('#total');
+      total.innerHTML = suma(array2)
+    //console.log(array2)
+      //console.log(array1)
       products.innerHTML += `<div id="removeProduct"> 
       <li id="removeLi"><input type="checkbox"/> ${objproducto.datos.Nombre} ${objproducto.datos.Precio} <a id="remove-${objproducto.id}"><img src="./image/delete-button.png"/></a></li> 
       </div> `;  
-      array1.push(prodSelec);
-      const total = document.querySelector('#total');
+      //array1.push(prodSelec);            
      // const removeProduct = document.querySelector('#removeProduct')
       //const removeLi = document.querySelector('#removeLi')
-      total.innerHTML = suma(array1)
-      localStorage.setItem( "Pedido", JSON.stringify(array1)) 
+      //localStorage.setItem( "Pedido", JSON.stringify(array1)) 
       /*const remove = document.querySelector(`#remove-${objproducto.id}`)
       remove.addEventListener('click', () => {
         removeProduct.removeChild(removeLi)
       })*/
       break;
-  
     } 
     })
     return createDiv;
@@ -115,31 +122,7 @@ const suma = (arr) => {
     })
     return acum;
 }
-/*
-const category = (div, idButton) => {
-    dataProduct("Adicional")
-     .then(res1 => {
-     // console.log(res1)
-      const arrayA = res1;
-    arrayA.forEach(elem => {
-    const opcion = elem.datos.Nombre;
-    const precio = elem.datos.Precio;
-    console.log(opcion)
-    const buttonAdicional = document.createElement('button');
-    buttonAdicional.id = idButton;
-     //console.log(buttonAdicional.id)
-       buttonAdicional.innerHTML = opc;
-       //console.log(buttonAdicional.innerHTML)
-       div.appendChild(buttonAdicional)
-       buttonAdicional.addEventListener('click', () => {
-       array1.push(precio)
-       console.log(array1.push(precio))
-       console.log(array1)
-       })
-       })
-      })
-}
-*/
+
 export default () => {
     const createDiv = document.createElement('div');
     const order = `
@@ -162,7 +145,7 @@ export default () => {
            <div id="products" class="col-12"></div>
         </div>
         <h1> Total S/ <p id="total"> </p> <h1> 
-        <button> ENVIAR </button> 
+        <button id="enviar"> ENVIAR </button> 
          </section>
     </section>
     </section>
@@ -206,6 +189,11 @@ export default () => {
    const mesa = createDiv.querySelector('#mesa')
    mesa.addEventListener('click', () => {
      console.log('mesa')
+   })
+
+   const enviar = createDiv.querySelector('#enviar')
+   enviar.addEventListener('click', () => {
+     console.log('Hola')
    })
 
   return createDiv;

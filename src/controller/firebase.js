@@ -11,3 +11,7 @@
 //export const order = () => {
     
 //}
+export const setOrders = (objOrder) => {
+    return firebase.firestore().collection("order").add(objOrder)
+
+    }
