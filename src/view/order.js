@@ -22,8 +22,9 @@ const createButton = (objproducto) => {
 
     //creando div dentro de los cuales se crea un boton por cada producto
     const createButton = document.createElement("button");
-    console.log(createButton)
+    //console.log(createButton)
     createButton.div = objproducto.datos.Tipo;
+    //console.log(createButton.div) [res, pollo, vegetariano]
     createButton.innerHTML = objproducto.datos.Nombre;
     createButton.id = objproducto.id;
     createButton.precio = objproducto.datos.Precio;
@@ -49,7 +50,7 @@ const createButton = (objproducto) => {
         //createBtnEle.className = "btnEle col-3";
         div.appendChild(createBtnEle)
         createBtnEle.addEventListener('click', () => {
-          console.log(createBtnEle)
+        console.log(createBtnEle)
         const prodSelec = createButton.precio;
       products.innerHTML +=
       `<div id="removeProduct"> 
@@ -101,6 +102,7 @@ const createButton = (objproducto) => {
         removeProduct.removeChild(removeLi)
       })*/
       break;
+  
     } 
     })
     return createDiv;
