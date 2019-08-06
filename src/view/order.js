@@ -1,25 +1,31 @@
-  import { dataProduct, sendToOrder } from '../controller/functions.js'
-  
+import { dataProduct } from '../controller/functions.js'
 
 let array1 = [];
-console.log(array1)
 let array2 = [];
-//let arrayOrder = [];
+
 //aqui pintas el Storage: JSON.parseInt
-const array1Order = (objproducto, ele, adic) => {
-  //console.log(objproducto)
- // console.log(ele.nombre)
- // console.log(ele.precio)
-//  console.log(objproducto.datos.Adicional)
-  if(objproducto.datos.Tipo != undefined){
+const array1Order = (objproducto, ele, adic = {}) => {
+ // debugger
+  //console.log(adic.nombre)
+  if (objproducto.datos.Adicional != undefined && ((adic.nombre == 'huevo')||(adic.nombre == 'queso'))) {
     let objeto = {
-      name: objproducto.datos.Nombre +' '+ ele,
-      price: objproducto.datos.Precio,
+      name: objproducto.datos.Nombre +' '+ ele + ' '+ adic.nombre,
+      price: objproducto.datos.Precio + 1,
       id: objproducto.id,
-     adicional: adic
+      adicional: objproducto.datos.Adicional
     }
     array1.push(objeto);
-   
+   // console.log(array1)
+  } else if (objproducto.datos.Tipo != undefined && ((objproducto.datos.Nombre == 'Hamburguesa Simple')||(objproducto.datos.Nombre == 'Hamburguesa doble'))){
+   // console.log(objproducto.datos.Nombre)
+        let objeto = {
+          name: objproducto.datos.Nombre +' '+ ele,
+          price: objproducto.datos.Precio,
+          id: objproducto.id,
+         // adicional: objproducto.datos.Adicional
+        }
+        array1.push(objeto);
+       // console.log(array1)
   } else {
     let objeto = {
       name: objproducto.datos.Nombre,
@@ -27,32 +33,29 @@ const array1Order = (objproducto, ele, adic) => {
       id: objproducto.id,
     }
     array1.push(objeto);
-    //console.log(array1)
+   // console.log(array1)
   };
   products.innerHTML = '';
   array1.forEach(elementos => {
+   // console.log(elementos)
     const createList = document.createElement('li');
-    createList.innerHTML = elementos.name + ' ' + elementos.price;
+    createList.innerHTML = elementos.name + elementos.price;
     const buttonList = document.createElement('button');
     buttonList.innerHTML = 'x';
     buttonList.id = elementos.id;
+    buttonList.addEventListener('click', () => {
+      //.appendChild(createList)
+      console.log('hola')
+    })
+   // console.log(buttonList.id)
     createList.appendChild(buttonList);
     products.appendChild(createList);
-
   })
-  return array1 ;
+ return array1;
+ // console.log(array1)
 }
 
-
 const createButton = (objproducto) => {
-  console.log(objproducto)
- /* const arrHamburger = arrayAc.filter((elem) => {
-     return (elem.id === 's3XmdNPPmSKupPjBj5IQ') ||(elem.id === 'HYLEqOtNeTj3sEzBtabZ')
-  }) */
-    
-      
-    
-
     const createDiv = document.createElement("div");
     createDiv.id = 'div-add' + objproducto.id;
     const image = document.createElement('img');
@@ -66,50 +69,62 @@ const createButton = (objproducto) => {
     createButton.innerHTML = objproducto.datos.Nombre;
     createButton.id = objproducto.id;
     createButton.precio = objproducto.datos.Precio;
-    //console.log(createButton)
     createDiv.appendChild(createButton)
     createButton.addEventListener('click', (e)=>{
       const createBtn = e.target.id;
-          const div = document.querySelector('#div-add'+ createBtn)
+      const div = document.querySelector('#div-add'+ createBtn)
       //console.log(createBtn) identifica el boton a quien se hizo clic
       //aqui pintas el Storage: JSON.parseInt
       switch (createBtn){  
-      case ('s3XmdNPPmSKupPjBj5IQ'): 
-      case ('HYLEqOtNeTj3sEzBtabZ'):
-        (createButton.div).forEach(ele => {
-          //res pollo y vegano
-          const createBtnEle = document.createElement("button")
-          createBtnEle.id=createBtn+ele;
-          createBtnEle.innerHTML = ele;
-          div.appendChild(createBtnEle)
-          createBtnEle.addEventListener('click', () => {
-            array1Order(objproducto, ele)
-            array2.push(objproducto.datos.Precio)
-            const total = document.querySelector('#total');
-            total.innerHTML = suma(array2)  
+        case ('s3XmdNPPmSKupPjBj5IQ'): 
+        case ('HYLEqOtNeTj3sEzBtabZ'):
+          (createButton.div).forEach(ele => {
+            //res pollo y vegano
+            const divBtnEle = document.createElement('div')
+            const createBtnEle = document.createElement("button")
+            divBtnEle.id = createBtn+ele;
+            createBtnEle.innerHTML = ele;
+            divBtnEle.appendChild(createBtnEle)
+            div.appendChild(divBtnEle)
+            createBtnEle.addEventListener('click', () => {
+             // const tipoPendiente = even.target;
+             // console.log(tipoPendiente)
+              const arrayAdic = objproducto.datos.Adicional;
+             // console.log(arrayAdic)
+              arrayAdic.forEach(adic => {
+                //console.log(adic.nombre)
+               //huevo queso y precio
+             //  if( ((adic.nombre == 'queso')||(adic.nombre == 'huevo'))){
+                 const btnAdic = document.createElement('button')
+                 btnAdic.innerHTML = adic.nombre;
+                  divBtnEle.appendChild(btnAdic)
+                  btnAdic.addEventListener('click', () => {
+                  products.innerHTML += `<li>${objproducto.datos.Nombre} de ${ele} con ${adic.nombre} </li>`;
+                   //console.log(adic.nombre)
+                array1Order(objproducto, ele, adic)
+                array2.push(objproducto.datos.Precio)
+                array2.push(adic.precio)
+               const total = document.querySelector('#total');
+                total.innerHTML = suma(array2) 
+                   })
+                  })
+               //} else {
+                 const btnSinAdic = document.createElement('button')
+                 btnSinAdic.id = "sinAdicional"
+                 btnSinAdic.innerHTML = "sin adicional"
+                 divBtnEle.appendChild(btnSinAdic)
+                 btnSinAdic.addEventListener('click', () => {
+                   products.innerHTML += `<li> ${objproducto.datos.Nombre} de ${ele}</li>`;
+                   array1Order(objproducto, ele)
+                   array2.push(objproducto.datos.Precio)
+                   const total = document.querySelector('#total');
+                   total.innerHTML = suma(array2) 
+                  })
+            })
           })
-          const arrayAdic = objproducto.datos.Adicional;
-          arrayAdic.forEach(elem => {
-            //queso y huevo
-            const btnAdicional = document.createElement('button')
-           // btnAdicional.type = 'checkbox';
-            btnAdicional.id = 'btnAdicional'+elem.nombre;
-            btnAdicional.innerHTML += `${elem.nombre}`;
-            div.appendChild(btnAdicional)
-            btnAdicional.addEventListener('click', () => {
-              //array1Order(objproducto, ele)
-              array1.push(elem.nombre)
-              array2.push(elem.precio)
-              products.innerHTML += `${elem.nombre}`;
-              const total = document.querySelector('#total');
-              total.innerHTML = suma(array2)
-        })   
-      })
-        })
-        break;
+          break;
         default: 
         array1Order(objproducto)
-        // console.log(objproducto.id)
         array2.push(objproducto.datos.Precio)
         const total = document.querySelector('#total');
         total.innerHTML = suma(array2)
@@ -118,14 +133,6 @@ const createButton = (objproducto) => {
     })
     return createDiv;
   }
-  /*
-  const deleteList = () => {
-    const delet = document.querySelector(`#delet-${objproducto.id}`)
-    delet.addEventListener('click', () => {
-      console.log('hola')
-    })
-    return deleteList
-  } */
   
   const suma = (arr) => {
     let acum = 0;
@@ -172,7 +179,7 @@ const createButton = (objproducto) => {
     btnDesayuno.addEventListener('click', () => {
         dataProduct("Desayuno")
         .then(res => {
-           // console.log(res)
+           //  console.log(res)
              const arrayAc = res;
              contenido.innerHTML='';
              arrayAc.forEach(element => {
@@ -186,14 +193,11 @@ const createButton = (objproducto) => {
     const btnAc = createDiv.querySelector('#btn-ac')
     btnAc.addEventListener('click', () => {
      dataProduct("Almuerzo y cena")
-     .then(res => { 
+     .then(res => {
+         //console.log(res)
           const arrayAc = res;
-         /*  const arrHamburger = arrayAc.filter((elem) => {
-            return (elem.id === 's3XmdNPPmSKupPjBj5IQ') ||(elem.id === 'HYLEqOtNeTj3sEzBtabZ')
-          }) */
-          //console.log(arrHamburger)
           contenido.innerHTML='';
-          arrayAc.forEach(element => {          
+          arrayAc.forEach(element => {
             contenido.appendChild(createButton(element))
        })
     })
@@ -203,11 +207,7 @@ const createButton = (objproducto) => {
   enviar.addEventListener('click', () => {
     const nombre = document.getElementById("nombre").value; 
     const mesa = document.getElementById("mesa").value;
-    //const array = array1Order();
-    //console.log(array);
-    console.log("hola")
-     
-     //sendToOrder(nombre, array1Order(),"pendiente", mesa)
+     console.log(nombre, mesa)
    })
 
   return createDiv;
