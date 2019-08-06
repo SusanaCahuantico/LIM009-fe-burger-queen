@@ -43,6 +43,10 @@ const array1Order = (objproducto, ele, adic = {}) => {
     const buttonList = document.createElement('button');
     buttonList.innerHTML = 'x';
     buttonList.id = elementos.id;
+    buttonList.addEventListener('click', () => {
+      //.appendChild(createList)
+      console.log('hola')
+    })
    // console.log(buttonList.id)
     createList.appendChild(buttonList);
     products.appendChild(createList);
@@ -82,7 +86,7 @@ const createButton = (objproducto) => {
             createBtnEle.innerHTML = ele;
             divBtnEle.appendChild(createBtnEle)
             div.appendChild(divBtnEle)
-            createBtnEle.addEventListener('click', (even) => {
+            createBtnEle.addEventListener('click', () => {
              // const tipoPendiente = even.target;
              // console.log(tipoPendiente)
               const arrayAdic = objproducto.datos.Adicional;
