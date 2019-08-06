@@ -1,23 +1,40 @@
 import { dataProduct } from '../controller/functions.js'
 
 let array1 = [];
-//console.log(array1)
 let array2 = [];
-//let arrayOrder = [];
+/*
+order [
+{
+  id, 
+  name,
+  price,
+  label ?  type.hamname : name + adicional.name
+},
+{
+  id, 
+  name,
+  price,
+  label
+}
+,
+{
+  id, 
+  name,
+  price,
+  label
+}
+]*/
+
 //aqui pintas el Storage: JSON.parseInt
-const array1Order = (objproducto, ele) => {
-  //console.log(objproducto)
- // console.log(ele.nombre)
- // console.log(ele.precio)
-//  console.log(objproducto.datos.Adicional)
+const array1Order = (objproducto, ele, adic) => {
   if(objproducto.datos.Tipo != undefined){
     let objeto = {
       name: objproducto.datos.Nombre +' '+ ele,
       price: objproducto.datos.Precio,
       id: objproducto.id,
-     // adicional: ele.nombre
+     // adicional: adic.nombre
     }
-    array1.push(objeto);
+  array1.push(objeto);
    console.log(array1)
   } else {
     let objeto = {
@@ -26,7 +43,7 @@ const array1Order = (objproducto, ele) => {
       id: objproducto.id,
     }
     array1.push(objeto);
-    console.log(array1)
+   console.log(array1)
   };
   products.innerHTML = '';
   array1.forEach(elementos => {
@@ -35,9 +52,9 @@ const array1Order = (objproducto, ele) => {
     const buttonList = document.createElement('button');
     buttonList.innerHTML = 'x';
     buttonList.id = elementos.id;
+    console.log(buttonList.id)
     createList.appendChild(buttonList);
     products.appendChild(createList);
-
   })
   return array1;
 }
@@ -56,50 +73,78 @@ const createButton = (objproducto) => {
     createButton.innerHTML = objproducto.datos.Nombre;
     createButton.id = objproducto.id;
     createButton.precio = objproducto.datos.Precio;
-    //console.log(createButton)
     createDiv.appendChild(createButton)
     createButton.addEventListener('click', (e)=>{
       const createBtn = e.target.id;
-          const div = document.querySelector('#div-add'+ createBtn)
+      const div = document.querySelector('#div-add'+ createBtn)
       //console.log(createBtn) identifica el boton a quien se hizo clic
       //aqui pintas el Storage: JSON.parseInt
       switch (createBtn){  
-      case ('s3XmdNPPmSKupPjBj5IQ'): 
-      case ('HYLEqOtNeTj3sEzBtabZ'):
-        (createButton.div).forEach(ele => {
-          //res pollo y vegano
-          const createBtnEle = document.createElement("button")
-          createBtnEle.id=createBtn+ele;
-          createBtnEle.innerHTML = ele;
-          div.appendChild(createBtnEle)
-          createBtnEle.addEventListener('click', () => {
-            array1Order(objproducto, ele)
+        case ('s3XmdNPPmSKupPjBj5IQ'): 
+        case ('HYLEqOtNeTj3sEzBtabZ'):
+          (createButton.div).forEach(ele => {
+            //res pollo y vegano
+            const divBtnEle = document.createElement('div')
+            const createBtnEle = document.createElement("button")
+            divBtnEle.id = createBtn+ele;
+            createBtnEle.innerHTML = ele;
+            divBtnEle.appendChild(createBtnEle)
+            div.appendChild(divBtnEle)
+            createBtnEle.addEventListener('click', () => {
+              const arrayAdic = objproducto.datos.Adicional;
+              //console.log(arrayAdic)
+              arrayAdic.forEach(adic => {
+               // huevo queso
+                const btnAdic = document.createElement('button')
+                btnAdic.innerHTML = adic.nombre;
+                divBtnEle.appendChild(btnAdic)
+                btnAdic.addEventListener('click', () => {
+                  products.innerHTML += `<li>${objproducto.datos.Nombre} de ${ele} con ${adic.nombre} </li>`;
+                  array1Order(objproducto, ele)
+           // console.log(array1)
+             array2.push(objproducto.datos.Precio)
+             array2.push(adic.precio)
+              const total = document.querySelector('#total');
+             total.innerHTML = suma(array2) 
+                })
+              })
+              const btnSinAdic = document.createElement('button')
+              btnSinAdic.id = "sinAdicional"
+              btnSinAdic.innerHTML = "sin adicional"
+              divBtnEle.appendChild(btnSinAdic)
+              btnSinAdic.addEventListener('click', () => {
+                products.innerHTML += `<li> ${objproducto.datos.Nombre} de ${ele}</li>`;
+                array1Order(objproducto, ele)
             array2.push(objproducto.datos.Precio)
-            const total = document.querySelector('#total');
-            total.innerHTML = suma(array2)  
+             const total = document.querySelector('#total');
+             total.innerHTML = suma(array2) 
+              })
+             //array1Order(objproducto, ele)
+            // console.log(array1)
+            //  array2.push(objproducto.datos.Precio)
+             // const total = document.querySelector('#total');
+             // total.innerHTML = suma(array2)  
+            })
           })
-          const arrayAdic = objproducto.datos.Adicional;
-          arrayAdic.forEach(elem => {
+         /* const arrayAdic = objproducto.datos.Adicional;
+          arrayAdic.forEach(adic => {
             //queso y huevo
             const btnAdicional = document.createElement('button')
-           // btnAdicional.type = 'checkbox';
-            btnAdicional.id = 'btnAdicional'+elem.nombre;
-            btnAdicional.innerHTML += `${elem.nombre}`;
+            btnAdicional.id = 'btnAdicional'+adic.nombre;
+            btnAdicional.innerHTML += adic.nombre;
             div.appendChild(btnAdicional)
             btnAdicional.addEventListener('click', () => {
-              //array1Order(objproducto, ele)
-              array1.push(elem.nombre)
-              array2.push(elem.precio)
-              products.innerHTML += `${elem.nombre}`;
+              //array1Order(objproducto, ele, adic)
+              //array1.push(adic)
+              array2.push(adic.precio)
+              products.innerHTML += adic.nombre;
               const total = document.querySelector('#total');
-              total.innerHTML = suma(array2)
-        })   
-      })
-        })
-        break;
+              total.innerHTML = suma(array2);
+            })   
+          })*/
+          break;
         default: 
         array1Order(objproducto)
-        // console.log(objproducto.id)
         array2.push(objproducto.datos.Precio)
         const total = document.querySelector('#total');
         total.innerHTML = suma(array2)
