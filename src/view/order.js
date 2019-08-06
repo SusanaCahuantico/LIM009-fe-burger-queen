@@ -1,11 +1,12 @@
-import { dataProduct } from '../controller/functions.js'
+  import { dataProduct, sendToOrder } from '../controller/functions.js'
+  
 
 let array1 = [];
-//console.log(array1)
+console.log(array1)
 let array2 = [];
 //let arrayOrder = [];
 //aqui pintas el Storage: JSON.parseInt
-const array1Order = (objproducto, ele) => {
+const array1Order = (objproducto, ele, adic) => {
   //console.log(objproducto)
  // console.log(ele.nombre)
  // console.log(ele.precio)
@@ -15,10 +16,10 @@ const array1Order = (objproducto, ele) => {
       name: objproducto.datos.Nombre +' '+ ele,
       price: objproducto.datos.Precio,
       id: objproducto.id,
-     // adicional: ele.nombre
+     adicional: adic
     }
     array1.push(objeto);
-   console.log(array1)
+   
   } else {
     let objeto = {
       name: objproducto.datos.Nombre,
@@ -26,7 +27,7 @@ const array1Order = (objproducto, ele) => {
       id: objproducto.id,
     }
     array1.push(objeto);
-    console.log(array1)
+    //console.log(array1)
   };
   products.innerHTML = '';
   array1.forEach(elementos => {
@@ -39,10 +40,19 @@ const array1Order = (objproducto, ele) => {
     products.appendChild(createList);
 
   })
-  return array1;
+  return array1 ;
 }
 
+
 const createButton = (objproducto) => {
+  console.log(objproducto)
+ /* const arrHamburger = arrayAc.filter((elem) => {
+     return (elem.id === 's3XmdNPPmSKupPjBj5IQ') ||(elem.id === 'HYLEqOtNeTj3sEzBtabZ')
+  }) */
+    
+      
+    
+
     const createDiv = document.createElement("div");
     createDiv.id = 'div-add' + objproducto.id;
     const image = document.createElement('img');
@@ -162,7 +172,7 @@ const createButton = (objproducto) => {
     btnDesayuno.addEventListener('click', () => {
         dataProduct("Desayuno")
         .then(res => {
-           //  console.log(res)
+           // console.log(res)
              const arrayAc = res;
              contenido.innerHTML='';
              arrayAc.forEach(element => {
@@ -176,11 +186,14 @@ const createButton = (objproducto) => {
     const btnAc = createDiv.querySelector('#btn-ac')
     btnAc.addEventListener('click', () => {
      dataProduct("Almuerzo y cena")
-     .then(res => {
-         //console.log(res)
+     .then(res => { 
           const arrayAc = res;
+         /*  const arrHamburger = arrayAc.filter((elem) => {
+            return (elem.id === 's3XmdNPPmSKupPjBj5IQ') ||(elem.id === 'HYLEqOtNeTj3sEzBtabZ')
+          }) */
+          //console.log(arrHamburger)
           contenido.innerHTML='';
-          arrayAc.forEach(element => {
+          arrayAc.forEach(element => {          
             contenido.appendChild(createButton(element))
        })
     })
@@ -190,7 +203,11 @@ const createButton = (objproducto) => {
   enviar.addEventListener('click', () => {
     const nombre = document.getElementById("nombre").value; 
     const mesa = document.getElementById("mesa").value;
-     console.log(nombre, mesa)
+    //const array = array1Order();
+    //console.log(array);
+    console.log("hola")
+     
+     //sendToOrder(nombre, array1Order(),"pendiente", mesa)
    })
 
   return createDiv;
