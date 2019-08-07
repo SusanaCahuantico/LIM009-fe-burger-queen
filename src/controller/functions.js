@@ -1,4 +1,4 @@
-import {WhereProduct} from './firebase.js';
+import {WhereProduct, setOrders } from './firebase.js';
 
 export const dataProduct = (category) => {
     return WhereProduct(category)
@@ -15,26 +15,16 @@ export const dataProduct = (category) => {
     }); 
 }
 
-export const order = (idProduct, quantity, unitPrice) => {
-    const arrayOrder = [];
-    const product = idProduct;
-    arrayOrder.push({
-        quantity: quantity,
-        nameProduct: product,
-        unitPrice: unitPrice,
-        totalPrice: totalPrice
-    })
-    return arrayOrder;
-}
 
-export const sendToOrder = (nameCustomer, arrayorder,state) => {
+export const sendToOrder = (nameCustomer, arrayorder,state, mesa) => {
     /*   const objUser = userAcces();
       console.log(objUser); */
         let  order= {
         cliente: nameCustomer,
         productos: arrayorder,
         fecha: new Date(),
-        estado:state
+        estado:state,
+        nroMesa: mesa
       }
     
       return setOrders(order)
@@ -60,3 +50,4 @@ export const getComentPost = (idPost) => {
   let db = firebase.firestore();
   return db.collection('posts').doc(`${idPost}`).collection('comment');
 };*/
+

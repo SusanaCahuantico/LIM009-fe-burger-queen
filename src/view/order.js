@@ -204,4 +204,3 @@ const createButton = (objproducto) => {
 
   return createDiv;
   }
-  
