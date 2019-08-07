@@ -6,7 +6,6 @@ let array2 = [];
 //aqui pintas el Storage: JSON.parseInt
 const array1Order = (objproducto, ele, adic = {}) => {
  // debugger
-  //console.log(adic.nombre)
   if (objproducto.datos.Adicional != undefined && ((adic.nombre == 'huevo')||(adic.nombre == 'queso'))) {
     let objeto = {
       name: objproducto.datos.Nombre +' '+ ele + ' '+ adic.nombre,
@@ -37,17 +36,16 @@ const array1Order = (objproducto, ele, adic = {}) => {
   };
   products.innerHTML = '';
   array1.forEach(elementos => {
-   // console.log(elementos)
     const createList = document.createElement('li');
-    createList.innerHTML = elementos.name + elementos.price;
+    createList.innerHTML = elementos.name + ' ' + elementos.price;
     const buttonList = document.createElement('button');
     buttonList.innerHTML = 'x';
     buttonList.id = elementos.id;
     buttonList.addEventListener('click', () => {
-      //.appendChild(createList)
-      console.log('hola')
+      array1.splice(elementos, 1)
+      products.removeChild(createList)
+     // array2.push(elementos.price)
     })
-   // console.log(buttonList.id)
     createList.appendChild(buttonList);
     products.appendChild(createList);
   })
@@ -62,7 +60,7 @@ const createButton = (objproducto) => {
     image.src = objproducto.datos.img;
     image.className = 'image';
     createDiv.appendChild(image);
-    createDiv.className = "product col-3";
+    createDiv.className = "product col-4";
     const createButton = document.createElement("button");
     //console.log(createButton)
     createButton.div = objproducto.datos.Tipo;
@@ -151,16 +149,16 @@ const createButton = (objproducto) => {
     <h1 class="burgerTitulo"> BURGER QUEEN </h1>
     </header>
     <section class="col-6">
-        <button id="btn-desayuno" class="col-6"> Desayuno </button>
-        <button id="btn-ac" class="col-6"> Almuerzo y cena </button>
+        <button id="btn-desayuno" class="desayuno col-6"> Desayuno </button>
+        <button id="btn-ac" class="desayuno col-6"> Almuerzo y cena </button>
         <div id="contenido" class="col-12"> </div>
     </section>
     <section class="col-6">
         <p class=""> Nombre del cliente: <input id="nombre" type="text" name="nombre" class="mesa" required> </p>
         <p class=""> N° de mesa: <input id="mesa" type="number" name="nombre" class="mesa" required> </p>  
         <section class="col-12"> 
-           <button class="productos col-md-4"> Cantidad </button>
-           <button class="productos col-md-4"> Productos </button>
+           <button class="productos col-4"> Cantidad </button>
+           <button class="productos col-4"> Productos </button>
            <button class="productos col-4"> Precio </button>
            <div id="" class="col-12">
            <ul id=products> </ul>
