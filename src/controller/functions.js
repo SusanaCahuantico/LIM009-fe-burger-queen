@@ -12,10 +12,8 @@ export const dataProduct = (category) => {
             // doc.data() is never undefined for query doc snapshots
         });
         return array;
-    });
-    
+    }); 
 }
-
 
 export const order = (idProduct, quantity, unitPrice) => {
     const arrayOrder = [];
@@ -29,7 +27,6 @@ export const order = (idProduct, quantity, unitPrice) => {
     return arrayOrder;
 }
 
-
 export const sendToOrder = (nameCustomer, arrayorder,state) => {
     /*   const objUser = userAcces();
       console.log(objUser); */
@@ -42,11 +39,11 @@ export const sendToOrder = (nameCustomer, arrayorder,state) => {
     
       return setOrders(order)
         .then( (docRef)  => {
-          console.log(docRef)
+        console.log(docRef)
           
         })
         .catch(function (error) {
-          console.error('Error adding document: ', error);
+        console.error('Error adding document: ', error);
         });
         
     }

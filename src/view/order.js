@@ -26,25 +26,33 @@ const array1Order = (objproducto, ele, adic = {}) => {
         array1.push(objeto);
        // console.log(array1)
   } else {
-    let objeto = {
-      name: objproducto.datos.Nombre,
-      price: objproducto.datos.Precio,
-      id: objproducto.id,
+      let objeto = {
+         name: objproducto.datos.Nombre,
+         price: objproducto.datos.Precio,
+         id: objproducto.id,
     }
     array1.push(objeto);
    // console.log(array1)
   };
   products.innerHTML = '';
   array1.forEach(elementos => {
+    //console.log(elementos)
     const createList = document.createElement('li');
     createList.innerHTML = elementos.name + ' ' + elementos.price;
     const buttonList = document.createElement('button');
     buttonList.innerHTML = 'x';
     buttonList.id = elementos.id;
     buttonList.addEventListener('click', () => {
-      array1.splice(elementos, 1)
+      const indice = array1.indexOf(elementos)
+      //console.log(indice)
+      if(indice> -1){
+        array1.splice(indice, 1);
+        array2.splice(indice, 1);
+        //console.log(array2)
+      }
+      const total = document.querySelector('#total');
+      total.innerHTML = suma(array2) 
       products.removeChild(createList)
-     // array2.push(elementos.price)
     })
     createList.appendChild(buttonList);
     products.appendChild(createList);
@@ -64,15 +72,13 @@ const createButton = (objproducto) => {
     const createButton = document.createElement("button");
     //console.log(createButton)
     createButton.div = objproducto.datos.Tipo;
-    createButton.innerHTML = objproducto.datos.Nombre;
+    createButton.innerHTML = objproducto.datos.Nombre + ' ' + 'S/.'+objproducto.datos.Precio+'.00';
     createButton.id = objproducto.id;
     createButton.precio = objproducto.datos.Precio;
     createDiv.appendChild(createButton)
     createButton.addEventListener('click', (e)=>{
       const createBtn = e.target.id;
       const div = document.querySelector('#div-add'+ createBtn)
-      //console.log(createBtn) identifica el boton a quien se hizo clic
-      //aqui pintas el Storage: JSON.parseInt
       switch (createBtn){  
         case ('s3XmdNPPmSKupPjBj5IQ'): 
         case ('HYLEqOtNeTj3sEzBtabZ'):
@@ -85,28 +91,20 @@ const createButton = (objproducto) => {
             divBtnEle.appendChild(createBtnEle)
             div.appendChild(divBtnEle)
             createBtnEle.addEventListener('click', () => {
-             // const tipoPendiente = even.target;
-             // console.log(tipoPendiente)
               const arrayAdic = objproducto.datos.Adicional;
-             // console.log(arrayAdic)
               arrayAdic.forEach(adic => {
-                //console.log(adic.nombre)
-               //huevo queso y precio
-             //  if( ((adic.nombre == 'queso')||(adic.nombre == 'huevo'))){
                  const btnAdic = document.createElement('button')
                  btnAdic.innerHTML = adic.nombre;
                   divBtnEle.appendChild(btnAdic)
                   btnAdic.addEventListener('click', () => {
                   products.innerHTML += `<li>${objproducto.datos.Nombre} de ${ele} con ${adic.nombre} </li>`;
-                   //console.log(adic.nombre)
                 array1Order(objproducto, ele, adic)
-                array2.push(objproducto.datos.Precio)
-                array2.push(adic.precio)
+                const sumaPrecio = objproducto.datos.Precio + adic.precio;
+                array2.push(sumaPrecio)
                const total = document.querySelector('#total');
                 total.innerHTML = suma(array2) 
                    })
                   })
-               //} else {
                  const btnSinAdic = document.createElement('button')
                  btnSinAdic.id = "sinAdicional"
                  btnSinAdic.innerHTML = "sin adicional"
@@ -177,22 +175,18 @@ const createButton = (objproducto) => {
     btnDesayuno.addEventListener('click', () => {
         dataProduct("Desayuno")
         .then(res => {
-           //  console.log(res)
              const arrayAc = res;
              contenido.innerHTML='';
              arrayAc.forEach(element => {
                contenido.appendChild(createButton(element))
-             //  console.log(createButton(element.datos.Nombre, element.id))
              })             
           })
-//total.innerHTML = suma(array1)
        })
 
     const btnAc = createDiv.querySelector('#btn-ac')
     btnAc.addEventListener('click', () => {
      dataProduct("Almuerzo y cena")
      .then(res => {
-         //console.log(res)
           const arrayAc = res;
           contenido.innerHTML='';
           arrayAc.forEach(element => {
