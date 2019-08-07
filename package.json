@@ -1,0 +1,35 @@
+{
+  "name": "LIM009-fe-burger-queen",
+  "version": "1.0.0",
+  "description": "## Preámbulo",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "htmlhint": "htmlhint dist/*.html ",
+    "eslint": "eslint --ext .js src/ test/",
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElviaVega/LIM009-fe-burger-queen.git"
+  },
+  "keywords": [
+    "javascript",
+    "firebase",
+    "jest"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ElviaVega/LIM009-fe-burger-queen/issues"
+  },
+  "homepage": "https://github.com/ElviaVega/LIM009-fe-burger-queen#readme",
+  "dependencies": {
+    "jest": "^24.8.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0"
+  }
+}

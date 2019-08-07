@@ -1,4 +1,5 @@
-import { dataProduct } from '../controller/functions.js'
+import { dataProduct, sendToOrder } from '../controller/functions.js'
+
 
 let array1 = [];
 let array2 = [];
@@ -32,7 +33,7 @@ const array1Order = (objproducto, ele, adic = {}) => {
       id: objproducto.id,
     }
     array1.push(objeto);
-   // console.log(array1)
+    console.log(array1)
   };
   products.innerHTML = '';
   array1.forEach(elementos => {
@@ -129,6 +130,7 @@ const createButton = (objproducto) => {
         break;
       } 
     })
+    //console.log(array1)
     return createDiv;
   }
   
@@ -205,9 +207,9 @@ const createButton = (objproducto) => {
   enviar.addEventListener('click', () => {
     const nombre = document.getElementById("nombre").value; 
     const mesa = document.getElementById("mesa").value;
-     console.log(nombre, mesa)
+    //console.log(array1)
+    sendToOrder(nombre, array1,"pendiente", mesa)
    })
 
   return createDiv;
   }
-  
