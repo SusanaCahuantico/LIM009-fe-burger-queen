@@ -105,7 +105,7 @@ input{
 }
 
 .image{
-    width: 90px;
+    width: 150px;
     display: block;
 }
 
@@ -115,13 +115,52 @@ input{
     text-align: center;
     font-size: 20px;
     font-weight: 640;
-    border: 1.5px solid #817f81;
-    background-color: #c9cfcf;
-    /*color: #837d7f;
-    padding: 1px;
-    margin: 5px;*/
+    border: 1.5px solid #363535;
+    background-color: #ff2525;
 }
 
 .desayuno:hover{
-    background: grey;
+    background: rgb(255, 77, 77);
+}
+
+.product{
+  /* display: block;*/
+ /*background: #e0e0e0;*/
+ /*margin: 0 0 1rem;*/
+ height: 45vh;
+ /*display: flex;*/
+ /* align-items por defecto tiene el valor `stretch` */
+ /*align-items: stretch;*/
+}
+
+.createButton{
+    display: block;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 2.8vh;
+    background-color: #ffe033;
+    align-items: center;
+}
+
+.aspa{
+    border-radius: 40px;
+    /*text-align: center;*/
+    font-weight: 1000;
+    border: 1.5px solid #000000;
+    background-color: #ff0606;
+    color: #e6dde0;
+    width: 25px;
+    margin: 5px;
+   /* float: right;*/
+   /* position: relative;*/ 
+}
+
+.list-product{
+    text-decoration: none;
+    border-radius: 2px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 640;
+    border: 1.5px solid #363535;
+    background-color: #ff2525;
 }
