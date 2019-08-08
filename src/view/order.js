@@ -1,4 +1,4 @@
-import { dataProduct } from '../controller/functions.js'
+import { dataProduct, sendToOrder } from '../controller/functions.js'
 
 let array1 = [];
 let array2 = [];
@@ -158,7 +158,7 @@ const createButton = (objproducto) => {
            <button class="productos col-4"> Cantidad </button>
            <button class="productos col-4"> Productos </button>
            <button class="productos col-4"> Precio </button>
-           <div id="" class="col-12">
+           <div id="list-order" class="col-12">
            <ul id=products> </ul>
            </div>
         </div>
@@ -199,7 +199,13 @@ const createButton = (objproducto) => {
   enviar.addEventListener('click', () => {
     const nombre = document.getElementById("nombre").value; 
     const mesa = document.getElementById("mesa").value;
-     console.log(nombre, mesa)
+    sendToOrder(nombre, array1,"pendiente", mesa)
+    const listOrder = document.querySelector("#list-order");
+    listOrder.innerHTML = "";
+    const total = document.querySelector("#total");
+    total.innerHTML = ""
+
+
    })
 
   return createDiv;
