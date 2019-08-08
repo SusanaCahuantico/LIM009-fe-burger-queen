@@ -67,7 +67,6 @@ const createButton = (objproducto) => {
     const createButton = document.createElement("button");
     createButton.div = objproducto.datos.Tipo;
     createButton.className = 'createButton';
-    //console.log(objproducto.datos.Tipo)
     createButton.innerHTML = objproducto.datos.Nombre + ' ' + 'S/.'+objproducto.datos.Precio+'.00';
     createButton.id = objproducto.id;
     createButton.precio = objproducto.datos.Precio;
@@ -79,22 +78,33 @@ const createButton = (objproducto) => {
       switch (createBtn){  
         case ('s3XmdNPPmSKupPjBj5IQ'): 
         case ('HYLEqOtNeTj3sEzBtabZ'):
+          const divElements = document.createElement('div')
+          div.appendChild(divElements)
+          divElements.id = 'elementos';
+          divElements.innerHTML = '';
           (createButton.div).forEach(ele => {
             //res pollo y vegano
-            //console.log(ele)
             const divBtnEle = document.createElement('div')
             const createBtnEle = document.createElement("button")
             divBtnEle.id = createBtn+ele;
             createBtnEle.innerHTML = ele;
+            divElements.appendChild(divBtnEle)
             divBtnEle.appendChild(createBtnEle)
-            div.appendChild(divBtnEle)
+           // createBtnEle.innerHTML = '';
             createBtnEle.addEventListener('click', () => {
               const arrayAdic = objproducto.datos.Adicional;
+              const divInputAdic = document.createElement('div')
+              divInputAdic.id = ele;
               arrayAdic.forEach(adic => {
-                 const btnAdic = document.createElement('button')
-                 btnAdic.innerHTML = adic.nombre;
-                  divBtnEle.appendChild(btnAdic)
-                  btnAdic.addEventListener('click', () => {
+               // huevo o queso
+               const inputAdic = document.createElement('input')
+               const labelInput = document.createElement('label')
+                 inputAdic.type = 'checkbox';
+                 labelInput.innerHTML = adic.nombre;
+                 divBtnEle.appendChild(divInputAdic)
+                  divInputAdic.appendChild(inputAdic)
+                  divInputAdic.appendChild(labelInput)
+                  inputAdic.addEventListener('click', () => {
                   products.innerHTML += `<li>${objproducto.datos.Nombre} de ${ele} con ${adic.nombre} </li>`;
                 array1Order(objproducto, ele, adic)
                 const sumaPrecio = objproducto.datos.Precio + adic.precio;
@@ -103,17 +113,34 @@ const createButton = (objproducto) => {
                 total.innerHTML = suma(array2) 
                    })
                   })
-                 const btnSinAdic = document.createElement('button')
-                 btnSinAdic.id = "sinAdicional"
-                 btnSinAdic.innerHTML = "sin adicional"
-                 divBtnEle.appendChild(btnSinAdic)
-                 btnSinAdic.addEventListener('click', () => {
+                 const inputSinAdic = document.createElement('input')
+                 const labelSinAdic = document.createElement('label')
+                 inputSinAdic.type = 'checkbox';
+                 inputSinAdic.id = "sinAdicional";
+                 labelSinAdic.innerHTML = "sin adicional";
+                 divBtnEle.appendChild(divInputAdic)
+                 divInputAdic.appendChild(inputSinAdic)
+                 divInputAdic.appendChild(labelSinAdic)
+                 inputSinAdic.addEventListener('click', () => {
                    products.innerHTML += `<li> ${objproducto.datos.Nombre} de ${ele}</li>`;
                    array1Order(objproducto, ele)
                    array2.push(objproducto.datos.Precio)
                    const total = document.querySelector('#total');
                    total.innerHTML = suma(array2) 
                   })
+                  if(divInputAdic.id =="res"){
+                    document.getElementById("res").style.display = "block";
+                    document.getElementById("pollo").style.display = "none";
+                    document.getElementById("vegetariano").style.display = "none";    
+                 } else if (divInputAdic.id=="pollo"){
+                   document.getElementById("pollo").style.display="block";
+                   document.getElementById("res").style.display="none";  
+                   document.getElementById("vegetariano").style.display="none";   
+                 } else {
+                   document.getElementById("vegetariano").style.display="block";
+                   document.getElementById("res").style.display="none";  
+                   document.getElementById("pollo").style.display="none";   
+                 }
             })
           })
           break;
