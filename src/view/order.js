@@ -32,7 +32,8 @@ const array1Order = (objproducto, ele, adic = {}) => {
   products.innerHTML = '';
   array1.forEach(elementos => {
     const createList = document.createElement('li');
-    createList.innerHTML = elementos.name + ' ' + 'S/.'+elementos.price+'.00';
+    createList.className = 'list'
+    createList.innerHTML = elementos.name + ' ' + 'S/.'+ elementos.price+'.00';
     const buttonList = document.createElement('button');
     buttonList.innerHTML = 'x';
     buttonList.className = 'aspa';
@@ -49,8 +50,11 @@ const array1Order = (objproducto, ele, adic = {}) => {
       total.innerHTML = suma(array2) 
       products.removeChild(createList)
     })
-    createList.appendChild(buttonList);
+    //createList.innerHTML = elementos.name + ' ' + 'S/.'+ elementos.price+'.00';
+    //createList.innerHTML = elementos.name + ' ' + 'S/.'+ elementos.price+'.00';  
     products.appendChild(createList);
+    createList.appendChild(buttonList);
+    
   })
  return array1;
  // console.log(array1)
@@ -196,8 +200,13 @@ const createButton = (objproducto) => {
   enviar.addEventListener('click', () => {
     const nombre = document.getElementById("nombre").value; 
     const mesa = document.getElementById("mesa").value;
-    //console.log(array1)
     sendToOrder(nombre, array1,"pendiente", mesa)
+    const listOrder = document.querySelector("#list-order");
+    listOrder.innerHTML = "";
+    const total = document.querySelector("#total");
+    total.innerHTML = ""
+
+
    })
 
   return createDiv;
