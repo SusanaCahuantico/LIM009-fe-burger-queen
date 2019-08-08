@@ -124,8 +124,8 @@ input{
 }
 
 .product{
-  /* display: block;*/
- /*background: #e0e0e0;*/
+  /*display: relative;*/
+  /*background: pink;*/
  /*margin: 0 0 1rem;*/
  height: 45vh;
  /*display: flex;*/
@@ -143,24 +143,36 @@ input{
 }
 
 .aspa{
-    border-radius: 40px;
+    border-radius: 10px;
     /*text-align: center;*/
     font-weight: 1000;
-    border: 1.5px solid #000000;
+    border: 1px solid #e40606;
     background-color: #ff0606;
-    color: #e6dde0;
-    width: 25px;
+    color: #e5e6dd;
+    width: 30px;
+    height: 30px;
     margin: 5px;
+    position: absolute;
+    right: 0;
    /* float: right;*/
    /* position: relative;*/ 
+}
+.products {
+    position: relative;
 }
 
 .list-product{
     text-decoration: none;
     border-radius: 2px;
     text-align: center;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 640;
     border: 1.5px solid #363535;
     background-color: #ff2525;
+  
+}
+.list{
+    margin: 10px;
+    font-size: 20px;
+
 }
