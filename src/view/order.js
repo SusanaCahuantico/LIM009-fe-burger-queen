@@ -32,7 +32,7 @@ const array1Order = (objproducto, ele, adic = {}) => {
   products.innerHTML = '';
   array1.forEach(elementos => {
     const createList = document.createElement('li');
-    createList.className = 'list'
+    createList.className = 'list col-12'
     createList.innerHTML = elementos.name + ' ' + 'S/.'+ elementos.price+'.00';
     const buttonList = document.createElement('button');
     buttonList.innerHTML = 'x';
@@ -40,21 +40,16 @@ const array1Order = (objproducto, ele, adic = {}) => {
     buttonList.id = elementos.id;
     buttonList.addEventListener('click', () => {
       const indice = array1.indexOf(elementos)
-      //console.log(indice)
       if(indice> -1){
         array1.splice(indice, 1);
         array2.splice(indice, 1);
-        //console.log(array2)
       }
       const total = document.querySelector('#total');
       total.innerHTML = suma(array2) 
       products.removeChild(createList)
     })
-    //createList.innerHTML = elementos.name + ' ' + 'S/.'+ elementos.price+'.00';
-    //createList.innerHTML = elementos.name + ' ' + 'S/.'+ elementos.price+'.00';  
     products.appendChild(createList);
     createList.appendChild(buttonList);
-    
   })
  return array1;
  // console.log(array1)
@@ -71,7 +66,7 @@ const createButton = (objproducto) => {
     const createButton = document.createElement("button");
     createButton.div = objproducto.datos.Tipo;
     createButton.className = 'createButton';
-    createButton.innerHTML = objproducto.datos.Nombre + ' ' + 'S/.'+objproducto.datos.Precio+'.00';
+    createButton.innerHTML = objproducto.datos.Nombre + ' ' + 'S/.'+ objproducto.datos.Precio+'.00';
     createButton.id = objproducto.id;
     createButton.precio = objproducto.datos.Precio;
     createDiv.appendChild(createButton)
@@ -79,13 +74,14 @@ const createButton = (objproducto) => {
       const createBtn = e.target.id;
       //console.log(e.target)
       const div = document.querySelector('#div-add'+ createBtn)
+     // div.innerHTML = '';
       switch (createBtn){  
         case ('s3XmdNPPmSKupPjBj5IQ'): 
         case ('HYLEqOtNeTj3sEzBtabZ'):
           const divElements = document.createElement('div')
           div.appendChild(divElements)
-          divElements.id = 'elementos';
-          divElements.innerHTML = '';
+         // divElements.id = 'elementos';
+          //divElements.innerHTML = '';
           (createButton.div).forEach(ele => {
             //res pollo y vegano
             const divBtnEle = document.createElement('div')
@@ -183,21 +179,21 @@ const createButton = (objproducto) => {
         <p class=""> Nombre del cliente: <input id="nombre" type="text" name="nombre" class="mesa" required> </p>
         <p class=""> N° de mesa: <input id="mesa" type="number" name="nombre" class="mesa" required> </p>  
         <section class="col-12"> 
-           <button class="list-product col-4"> Cantidad </button>
-           <button class="list-product col-4"> Productos </button>
-           <button class="list-product col-4"> Precio </button>
+           <button class="list-product col-12"> Lista de productos </button>
            <div id="list-order" class="col-12">
            <ul id=products class="lista"> </ul>
            </div>
-        </div>
-        <h1> Total S/ <p id="total"> </p> <h1> 
-        <button id="enviar"> ENVIAR </button> 
-         </section>
-    </section>
-    </section>
-    `;
-    createDiv.innerHTML = order;
-  
+           </div>
+           <h1> Total S/ <span id="total"></span>.00 <h1> 
+           <button id="enviar"> ENVIAR </button> 
+           </section>
+           </section>
+           </section>
+           `;
+           createDiv.innerHTML = order;
+           
+          // <button class="list-product col-4"> Productos </button>
+           //<button class="list-product col-4"> Precio </button>
     //const contenido = document.querySelector("#contenido")
     const btnDesayuno = createDiv.querySelector('#btn-desayuno');
     btnDesayuno.addEventListener('click', () => {
@@ -238,3 +234,8 @@ const createButton = (objproducto) => {
 
   return createDiv;
   }
+
+  //modal
+  // parentnode
+  //firstchild
+  

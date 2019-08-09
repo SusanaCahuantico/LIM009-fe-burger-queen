@@ -1,16 +1,10 @@
 import { WhereProduct } from '../src/controller/firebase.js'
+import { dataProduct} from '../src/controller/functions.js'
 import MockFirebase from 'mock-cloud-firestore';
-
-describe('whereProduct', () => {
-    it('Deberia traer los productos de la colleción productos de firebase')
-    return WhereProduct("Almuerzo y cena").then(() => {
-
-    })
-})
 
 const fixtureData = {
   __collection__: {
-    notes: {
+    Productos: {
       __doc__: {
         abc1d: {
           title: 'terminar la pildora',
@@ -21,16 +15,28 @@ const fixtureData = {
   }
 }
 
+describe('whereProduct', () => {
+    it('Deberia traer los productos de la colleción productos de firebase')
+    return WhereProduct("Almuerzo y cena").then(() =>  dataProduct (
+      (ygyg) => {
+        const result = 
+      }
+    )
+    )
+})
+
+
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
 import { addNote, getNotes, deleteNote } from "../src/controller/controller-firebase.js";
+import { dataProduct } from '../src/controller/functions.js';
 
 describe('lista de notas', () => {
-  it('Debería porder agregar una nota', (done) => {
+  it('Debería porder traer una nota', (done) => {
     return addNote('preparar la pildora')
       .then(() => getNotes(
         (data) => {
-          const result = data.find((note) => note.title === 'preparar la pildora');
+          const result = data.find((Productos) => Productos.title === 'preparar la pildora');
           expect(result.title).toBe('preparar la pildora');
           done()
         }
@@ -40,7 +46,7 @@ describe('lista de notas', () => {
     return deleteNote('abc1d')
       .then(() => getNotes(
         (data) => {
-          const result = data.find((note) => note.id === 'abc1d');
+          const result = data.find((note) => Productos.id === 'abc1d');
           expect(result).toBe(undefined);
           done()
         }
