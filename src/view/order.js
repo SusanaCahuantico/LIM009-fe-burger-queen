@@ -55,6 +55,12 @@ const array1Order = (objproducto, ele, adic = {}) => {
  // console.log(array1)
 }
 
+const deleteChild = (idCont) => {
+  let cont = document.getElementById(idCont);
+  let hijo = cont.lastChild;
+  cont.removeChild(hijo)
+}
+
 const createButton = (objproducto) => {
     const createDiv = document.createElement("div");
     createDiv.id = 'div-add' + objproducto.id;
@@ -62,7 +68,7 @@ const createButton = (objproducto) => {
     image.src = objproducto.datos.img;
     image.className = 'image';
     createDiv.appendChild(image);
-    createDiv.className = "product col-md-4 col-lg-4";
+    createDiv.className = "product col-md-6 col-lg-6";
     const createButton = document.createElement("button");
     createButton.div = objproducto.datos.Tipo;
     createButton.className = 'createButton';
@@ -71,6 +77,7 @@ const createButton = (objproducto) => {
     createButton.precio = objproducto.datos.Precio;
     createDiv.appendChild(createButton)
     createButton.addEventListener('click', (e)=>{
+      //debugger
       const createBtn = e.target.id;
       //console.log(e.target)
       const div = document.querySelector('#div-add'+ createBtn)
@@ -78,11 +85,18 @@ const createButton = (objproducto) => {
       switch (createBtn){  
         case ('s3XmdNPPmSKupPjBj5IQ'): 
         case ('HYLEqOtNeTj3sEzBtabZ'):
+          if (div.childElementCount === 3) {
+            return;
+          }
           const divElements = document.createElement('div')
           div.appendChild(divElements)
-         // divElements.id = 'elementos';
+          
+          divElements.id = 'elementos';
           //divElements.innerHTML = '';
+          //deleteChild('elementos')
+                 
           (createButton.div).forEach(ele => {
+            
             //res pollo y vegano
             const divBtnEle = document.createElement('div')
             const createBtnEle = document.createElement("button")
@@ -90,8 +104,12 @@ const createButton = (objproducto) => {
             createBtnEle.innerHTML = ele;
             divElements.appendChild(divBtnEle)
             divBtnEle.appendChild(createBtnEle)
+            
            // createBtnEle.innerHTML = '';
             createBtnEle.addEventListener('click', () => {
+              if (divBtnEle.childElementCount === 2) {
+                return;
+              }
               const arrayAdic = objproducto.datos.Adicional;
               const divInputAdic = document.createElement('div')
               divInputAdic.id = ele;
@@ -128,7 +146,8 @@ const createButton = (objproducto) => {
                    const total = document.querySelector('#total');
                    total.innerHTML = suma(array2) 
                   })
-                  if(divInputAdic.id =="res"){
+
+                  /* if(divInputAdic.id =="res"){
                     document.getElementById("res").style.display = "block";
                     document.getElementById("pollo").style.display = "none";
                     document.getElementById("vegetariano").style.display = "none";    
@@ -140,7 +159,7 @@ const createButton = (objproducto) => {
                    document.getElementById("vegetariano").style.display="block";
                    document.getElementById("res").style.display="none";  
                    document.getElementById("pollo").style.display="none";   
-                 }
+                 } */
             })
           })
           break;
