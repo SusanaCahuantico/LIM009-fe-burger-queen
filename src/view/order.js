@@ -55,12 +55,6 @@ const array1Order = (objproducto, ele, adic = {}) => {
  // console.log(array1)
 }
 
-const deleteChild = (idCont) => {
-  let cont = document.getElementById(idCont);
-  let hijo = cont.lastChild;
-  cont.removeChild(hijo)
-}
-
 const createButton = (objproducto) => {
     const createDiv = document.createElement("div");
     createDiv.id = 'div-add' + objproducto.id;
@@ -90,22 +84,20 @@ const createButton = (objproducto) => {
           }
           const divElements = document.createElement('div')
           div.appendChild(divElements)
-          
           divElements.id = 'elementos';
           //divElements.innerHTML = '';
-          //deleteChild('elementos')
-                 
           (createButton.div).forEach(ele => {
-            
             //res pollo y vegano
             const divBtnEle = document.createElement('div')
             const createBtnEle = document.createElement("button")
+           // createBtnEle.setAttribute('data-toggle', 'modal')
+           createBtnEle.setAttribute('class', 'btn-elementos')
+           // createBtnEle.setAttribute('data-target', `#${ele}`)
+           // console.log(createBtnEle)
             divBtnEle.id = createBtn+ele;
             createBtnEle.innerHTML = ele;
             divElements.appendChild(divBtnEle)
             divBtnEle.appendChild(createBtnEle)
-            
-           // createBtnEle.innerHTML = '';
             createBtnEle.addEventListener('click', () => {
               if (divBtnEle.childElementCount === 2) {
                 return;
@@ -113,24 +105,26 @@ const createButton = (objproducto) => {
               const arrayAdic = objproducto.datos.Adicional;
               const divInputAdic = document.createElement('div')
               divInputAdic.id = ele;
+              divInputAdic.className = 'mascara';
               arrayAdic.forEach(adic => {
-               // huevo o queso
-               const inputAdic = document.createElement('input')
-               const labelInput = document.createElement('label')
-                 inputAdic.type = 'checkbox';
-                 labelInput.innerHTML = adic.nombre;
-                 divBtnEle.appendChild(divInputAdic)
-                  divInputAdic.appendChild(inputAdic)
-                  divInputAdic.appendChild(labelInput)
-                  inputAdic.addEventListener('click', () => {
-                  products.innerHTML += `<li>${objproducto.datos.Nombre} de ${ele} con ${adic.nombre} </li>`;
+              // huevo o queso
+              const inputAdic = document.createElement('input')
+              const labelInput = document.createElement('label')
+              inputAdic.className = 'cerrar';
+              inputAdic.type = 'checkbox';
+                labelInput.innerHTML = adic.nombre;
+                divBtnEle.appendChild(divInputAdic)
+                divInputAdic.appendChild(inputAdic)
+                divInputAdic.appendChild(labelInput)
+                inputAdic.addEventListener('click', () => {
+                products.innerHTML += `<li>${objproducto.datos.Nombre} de ${ele} con ${adic.nombre} </li>`;
                 array1Order(objproducto, ele, adic)
                 const sumaPrecio = objproducto.datos.Precio + adic.precio;
                 array2.push(sumaPrecio)
                const total = document.querySelector('#total');
                 total.innerHTML = suma(array2) 
                    })
-                  })
+                 })
                  const inputSinAdic = document.createElement('input')
                  const labelSinAdic = document.createElement('label')
                  inputSinAdic.type = 'checkbox';
@@ -146,20 +140,19 @@ const createButton = (objproducto) => {
                    const total = document.querySelector('#total');
                    total.innerHTML = suma(array2) 
                   })
-
-                  /* if(divInputAdic.id =="res"){
-                    document.getElementById("res").style.display = "block";
-                    document.getElementById("pollo").style.display = "none";
-                    document.getElementById("vegetariano").style.display = "none";    
-                 } else if (divInputAdic.id=="pollo"){
-                   document.getElementById("pollo").style.display="block";
-                   document.getElementById("res").style.display="none";  
-                   document.getElementById("vegetariano").style.display="none";   
-                 } else {
-                   document.getElementById("vegetariano").style.display="block";
-                   document.getElementById("res").style.display="none";  
-                   document.getElementById("pollo").style.display="none";   
-                 } */
+                  if(ele == "res") {
+                    document.getElementById("res").style.display = 'block';
+                    document.getElementById("pollo").style.display = 'none';
+                    document.getElementById("vegetariano").style.display = 'none';           
+                  } else if (ele == "pollo"){
+                    document.getElementById('pollo').style.display = 'block';
+                    document.getElementById('res').style.display = 'none';
+                    document.getElementById('vegetariano').style.display = 'none';
+                  } else {
+                    document.getElementById('vegetariano').style.display = 'block';
+                    document.getElementById('res').style.display = 'none';
+                    document.getElementById('pollo').style.display = 'none';
+                  }
             })
           })
           break;
@@ -190,21 +183,25 @@ const createButton = (objproducto) => {
     <h1 class="burgerTitulo"> BURGER QUEEN </h1>
     </header>
     <section class="col-6">
-        <button id="btn-desayuno" class="desayuno col-6"> Desayuno </button>
-        <button id="btn-ac" class="desayuno col-6"> Almuerzo y cena </button>
+     <div class="cont-btn-menu">
+        <button id="btn-desayuno" class="desayuno col-md-5 col-lg-5 col-xs-12"> Desayuno </button>
+        <button id="btn-ac" class="desayuno col-md-5 col-lg-5 col-xs-12"> Almuerzo y cena </button>
+      </div>  
         <div id="contenido" class="content col-12"> </div>
     </section>
     <section class="col-6">
         <p class=""> Nombre del cliente: <input id="nombre" type="text" name="nombre" class="mesa" required> </p>
         <p class=""> N° de mesa: <input id="mesa" type="number" name="nombre" class="mesa" required> </p>  
-        <section class="col-12"> 
+        <section class="section-lista col-12"> 
            <button class="list-product col-12"> Lista de productos </button>
            <div id="list-order" class="col-12">
            <ul id=products class="lista"> </ul>
            </div>
            </div>
-           <h1> Total S/ <span id="total"></span>.00 <h1> 
-           <button id="enviar"> ENVIAR </button> 
+           <div class="enviar"> 
+           <h1 class="total"> Total S/ <span id="total"></span>.00 </h1>
+             <button id="enviar" class="btn-enviar"> ENVIAR </button> 
+          </div>
            </section>
            </section>
            </section>
@@ -247,8 +244,6 @@ const createButton = (objproducto) => {
     listOrder.innerHTML = "";
     const total = document.querySelector("#total");
     total.innerHTML = ""
-
-
    })
 
   return createDiv;
