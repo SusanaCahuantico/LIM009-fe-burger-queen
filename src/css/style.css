@@ -116,7 +116,7 @@ input{
     font-size: 20px;
     font-weight: 640;
     border: 1.5px solid #363535;
-    background-color: #ff2525;
+    background-color: #ff255b;
 }
 
 .desayuno:hover{
@@ -168,7 +168,7 @@ input{
     font-size: 30px;
     font-weight: 640;
     border: 1.5px solid #363535;
-    background-color: #ff2525;
+    background-color: #fac002;
   
 }
 .list{
@@ -178,4 +178,6 @@ input{
 }
 .elementos {
     display: flex;
+    width: 300px;
 }
+

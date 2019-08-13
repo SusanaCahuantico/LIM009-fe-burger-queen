@@ -106,6 +106,7 @@ const createButton = (objproducto) => {
             const createBtnEle = document.createElement("button")
             divBtnEle.id = createBtn+ele;
             createBtnEle.innerHTML = ele;
+            createBtnEle.setAttribute("class", "btn btn-outline-primary")
             divElements.appendChild(divBtnEle)
             divBtnEle.appendChild(createBtnEle)
             
@@ -151,7 +152,7 @@ const createButton = (objproducto) => {
                    total.innerHTML = suma(array2) 
                   })
 
-                  /* if(divInputAdic.id =="res"){
+                  /*if(divInputAdic.id =="res"){
                     document.getElementById("res").style.display = "block";
                     document.getElementById("pollo").style.display = "none";
                     document.getElementById("vegetariano").style.display = "none";    
