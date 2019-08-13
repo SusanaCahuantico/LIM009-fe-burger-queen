@@ -3,9 +3,11 @@ import { components } from '../view/index.js'
 const changetmp = (hash) => {
     if(hash === "" || hash ==='#' || hash === '#/'){
         return changeView('#/home')
-
     }else if (hash === '#/home' || hash === '#/mesero') {
         return changeView(hash);
+    } else if(hash ==='#/home' || hash==='#/cocinero') { 
+        return changeView(hash);
+    
     } else {
         return changeView('#/home');
     }
@@ -18,6 +20,8 @@ const changeView = (route) => {
         case '#/home':  root.appendChild(components.home())
         break;
         case '#/mesero': root.appendChild(components.order())
+        break;
+        case '#/cocinero': root.appendChild(components.cheff())
         break;
         default:
             break;
