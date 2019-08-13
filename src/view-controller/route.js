@@ -21,7 +21,7 @@ const changeView = (route) => {
         break;
         case '#/mesero': root.appendChild(components.order())
         break;
-        case '#/cocinero': root.append(components.cheff())
+        case '#/cocinero': root.appendChild(components.cheff())
         break;
         default:
             break;

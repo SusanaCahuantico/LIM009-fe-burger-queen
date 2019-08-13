@@ -132,7 +132,6 @@ h4{
     font-size: 22px;
     font-weight: 640;
     background-color: #ffb500;
-    padding-left: 40px;
     margin: 15px;
     color: #173083;
 }
@@ -235,4 +234,13 @@ h4{
 
 .section-lista{
     border-left: 5px solid #173083;
+}
+
+.mascara{
+    display: flex;
+}
+
+.mascara>input{
+    justify-content: center;
+    margin: 5px;
 }
