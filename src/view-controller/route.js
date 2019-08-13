@@ -5,9 +5,8 @@ const changetmp = (hash) => {
         return changeView('#/home')
     }else if (hash === '#/home' || hash === '#/mesero') {
         return changeView(hash);
-    } else if(hash ==='#/home' || hash==='#/cocinero') { 
+    } else if (hash === '#home' || hash === '#/cocinero'){
         return changeView(hash);
-    
     } else {
         return changeView('#/home');
     }

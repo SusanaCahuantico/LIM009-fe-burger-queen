@@ -26,7 +26,6 @@ export const sendToOrder = (nameCustomer, arrayorder,state, mesa) => {
         estado:state,
         nroMesa: mesa
       }
-    
       return setOrders(order)
         .then( (docRef)  => {
         console.log(docRef)
@@ -34,10 +33,10 @@ export const sendToOrder = (nameCustomer, arrayorder,state, mesa) => {
         })
         .catch(function (error) {
         console.error('Error adding document: ', error);
-        });
-        
+        });      
     }
-    /*export const createCommentPost = (idPost, user, comment, fechaComment) => {
+/*
+export const createCommentPost = (idPost, user, comment, fechaComment) => {
   let db = firebase.firestore();
   return db.collection('posts').doc(`${idPost}`)
     .collection('comment').add({
