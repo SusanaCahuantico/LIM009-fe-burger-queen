@@ -190,8 +190,8 @@ const createButton = (objproducto) => {
         <div id="contenido" class="content col-12"> </div>
     </section>
     <section class="col-6">
-        <p class=""> Nombre del cliente: <input id="nombre" type="text" name="nombre" class="mesa" required> </p>
-        <p class=""> N° de mesa: <input id="mesa" type="number" name="nombre" class="mesa" required> </p>  
+        <p class="nombre"> Nombre del cliente: <input id="nombre" type="text" name="nombre" class="mesa" required> </p>
+        <p class="nombre"> N° de mesa: <input id="mesa" type="number" name="nombre" class="mesa" required> </p>  
         <section class="section-lista col-12"> 
            <button class="list-product col-12"> Lista de productos </button>
            <div id="list-order" class="col-12">
@@ -199,8 +199,8 @@ const createButton = (objproducto) => {
            </div>
            </div>
            <div class="enviar"> 
-           <h1 class="total"> Total S/ <span id="total"></span>.00 </h1>
-             <button id="enviar" class="btn-enviar"> ENVIAR </button> 
+           <h2 class="total"> Total S/ <span id="total"></span>.00 </h2>
+             <button id="enviar" class="btn-enviar">  ENVIAR </button> 
           </div>
            </section>
            </section>
