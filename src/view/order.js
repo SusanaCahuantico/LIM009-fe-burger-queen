@@ -122,11 +122,11 @@ const createButton = (objproducto) => {
                 total.innerHTML = suma(array2) 
                    })
                  })
-                 const inputSinAdic = document.createElement('input')
-                 const labelSinAdic = document.createElement('label')
-                 inputSinAdic.type = 'checkbox';
+                 const inputSinAdic = document.createElement('button')
+                 //const labelSinAdic = document.createElement('label')
+                // inputSinAdic.type = 'checkbox';
                  inputSinAdic.id = "sinAdicional";
-                 labelSinAdic.innerHTML = "sin adicional";
+                 inputSinAdic.innerHTML = "sin adicional";
                  divBtnEle.appendChild(divInputAdic)
                  divInputAdic.appendChild(inputSinAdic)
                  divInputAdic.appendChild(labelSinAdic)
