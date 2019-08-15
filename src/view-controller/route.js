@@ -3,7 +3,6 @@ import { components } from '../view/index.js'
 const changetmp = (hash) => {
     if(hash === "" || hash ==='#' || hash === '#/'){
         return changeView('#/home')
-
     }else if (hash === '#/home' || hash === '#/mesero') {
         return changeView(hash);
     } else if (hash === '#home' || hash === '#/cocinero'){
