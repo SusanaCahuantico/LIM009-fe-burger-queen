@@ -7,15 +7,16 @@ const array1Order = (objproducto, ele, adic = {}) => {
   //debugger
   if (objproducto.datos.Adicional != undefined && ((adic.nombre == 'huevo')||(adic.nombre == 'queso'))) {
     let objeto = {
-      name: objproducto.datos.Nombre +' de '+ ele + ' con '+ adic.nombre,
+      name: objproducto.datos.Nombre +' '+ ele + ' '+ adic.nombre,
       price: objproducto.datos.Precio + 1,
       id: objproducto.id,
+      //adicional: objproducto.datos.Adicional
     }
     array1.push(objeto);
     console.log(array1)
   } else if (objproducto.datos.Tipo != undefined && ((objproducto.datos.Nombre == 'Hamburguesa Simple')||(objproducto.datos.Nombre == 'Hamburguesa doble'))){
         let objeto = {
-          name: objproducto.datos.Nombre +' de '+ ele,
+          name: objproducto.datos.Nombre +' '+ ele,
           price: objproducto.datos.Precio,
           id: objproducto.id,
         }
@@ -93,7 +94,8 @@ const createButton = (objproducto) => {
             const createBtnEle = document.createElement("button")
            // createBtnEle.setAttribute('data-toggle', 'modal')
            createBtnEle.setAttribute('class', 'btn-elementos')
-         
+           // createBtnEle.setAttribute('data-target', `#${ele}`)
+           // console.log(createBtnEle)
             divBtnEle.id = createBtn+ele;
             createBtnEle.innerHTML = ele;
             createBtnEle.setAttribute("class", "btn btn-outline-primary")
@@ -149,7 +151,7 @@ const createButton = (objproducto) => {
                     document.getElementById('pollo').style.display = 'block';
                     document.getElementById('res').style.display = 'none';
                     document.getElementById('vegetariano').style.display = 'none';
-                  } else if (ele == 'vegetariano'){
+                  } else {
                     document.getElementById('vegetariano').style.display = 'block';
                     document.getElementById('res').style.display = 'none';
                     document.getElementById('pollo').style.display = 'none';
@@ -191,10 +193,8 @@ const createButton = (objproducto) => {
         <div id="contenido" class="content col-12"> </div>
     </section>
     <section class="col-6">
-        <label for="nombre" class="nombre"> Nombre del cliente: </label> 
-        <input id="nombre" type="text" name="nombre" class="mesa" required> 
-        <label for="mesa" class="nombre"> N° de mesa:</label>
-        <input id="mesa" type="number" name="nombre" class="mesa" required> 
+        <p class=""> Nombre del cliente: <input id="nombre" type="text" name="nombre" class="mesa" required> </p>
+        <p class=""> N° de mesa: <input id="mesa" type="number" name="nombre" class="mesa" required> </p>  
         <section class="section-lista col-12"> 
            <button class="list-product col-12"> Lista de productos </button>
            <div id="list-order" class="col-12">
@@ -202,8 +202,8 @@ const createButton = (objproducto) => {
            </div>
            </div>
            <div class="enviar"> 
-           <h2 class="total"> Total S/ <span id="total"></span>.00 </h2>
-             <button id="enviar" class="btn-enviar">  ENVIAR </button> 
+           <h1 class="total"> Total S/ <span id="total"></span>.00 </h1>
+             <button id="enviar" class="btn-enviar"> ENVIAR </button> 
           </div>
            </section>
            </section>
@@ -252,4 +252,7 @@ const createButton = (objproducto) => {
   return createDiv;
   }
 
+  //modal
+  // parentnode
+  //firstchild
   

@@ -35,18 +35,3 @@ export const sendToOrder = (nameCustomer, arrayorder,state, mesa) => {
         console.error('Error adding document: ', error);
         });      
     }
-/*
-export const createCommentPost = (idPost, user, comment, fechaComment) => {
-  let db = firebase.firestore();
-  return db.collection('posts').doc(`${idPost}`)
-    .collection('comment').add({
-      user: user,
-      comment: comment,
-      fecha: fechaComment
-    });
-};
-export const getComentPost = (idPost) => {
-  let db = firebase.firestore();
-  return db.collection('posts').doc(`${idPost}`).collection('comment');
-};*/
-
