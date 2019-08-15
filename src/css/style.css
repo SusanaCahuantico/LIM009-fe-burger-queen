@@ -105,9 +105,8 @@ h4{
 }
 
 .nombre{
-    margin: 5px;  
+    margin: 5px;
     padding-left: 31px;
-
 }
 .mesa{
     padding-left: 5px;
@@ -215,6 +214,7 @@ h4{
 
 .elementos{
     display: flex;
+    width: 300px;
 }
 
 .btn-elementos{
