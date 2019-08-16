@@ -87,7 +87,7 @@ header{
 
 .burgerTitulo{
     align-content: center;
-    justify-content: center;
+    /*justify-content: center;*/
     align-items: center;
     font-weight: 950;
     text-align: left;
@@ -285,4 +285,20 @@ h4{
     text-align: center; 
     float: right;
     font-weight: 150;
+    font-size: 27px;
+}
+
+.preparadoOrder, .preparadoInicio{
+    text-decoration: none;
+    background-color: #173083;;
+    color: white;
+    width: 180px;
+    height: 40px;
+    /*padding: 7px;*/
+    border-radius: 7px;
+    text-align: center; 
+    float: right;
+    font-weight: 150;
+    font-size: 27px;
+    margin: 5px;
 }

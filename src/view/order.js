@@ -181,8 +181,10 @@ const createButton = (objproducto) => {
     const createDiv = document.createElement('div');
     const order = `
     <section class="col-12">
-    <header>
-    <h1 class="burgerTitulo"> BURGER QUEEN </h1>
+    <header class="">
+    <div class="divPreparar"> 
+    <h1 class="burgerTitulo"> BURGER QUEEN <a href="#/preparado" class="preparadoOrder"> Entregados </a> <a href="#/home" class="preparadoInicio">Inicio </a> </h1> 
+    </div>
     </header>
     <section class="col-6">
      <div class="cont-btn-menu">
