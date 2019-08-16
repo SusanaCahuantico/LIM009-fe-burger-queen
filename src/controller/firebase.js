@@ -19,6 +19,7 @@ export const getOrder = (state,callback) => {
         console.log(doc.data().estado)
         if(doc.data().estado===state){  data.push({id:doc.id, 
           cliente:doc.data().cliente,
+          mesa: doc.data().nroMesa,
           fecha: doc.data().fecha,
           estado: doc.data().estado,
           productos: doc.data().productos,

@@ -20,7 +20,7 @@ export default () => {
             const createListo = document.createElement('div');
             createListo.className = 'box-order col-5';
             createListo.innerHTML += `
-            <div class="cliente"> ${element.cliente} : ${element.estado}</div>
+            <div class="cliente">N°mesa:${element.mesa} ..........  ${element.cliente} : ${element.estado}</div>
             `;
             (element.productos).forEach(products => {
                 createListo.innerHTML += `

@@ -91,7 +91,7 @@ const createButton = (objproducto) => {
             //res pollo y vegano
             const divBtnEle = document.createElement('div')
             const createBtnEle = document.createElement("button")
-           divBtnEle.className = "col-4";
+           divBtnEle.className = "";
            createBtnEle.setAttribute('class', 'btn-elementos')
            // createBtnEle.setAttribute('data-target', `#${ele}`)
            // console.log(createBtnEle)
@@ -183,7 +183,7 @@ const createButton = (objproducto) => {
     <section class="col-12">
     <header class="">
     <div class="divPreparar"> 
-    <h1 class="burgerTitulo"> BURGER QUEEN <a href="#/preparado" class="preparadoOrder"> Entregados </a> <a href="#/home" class="preparadoInicio">Inicio </a> </h1> 
+    <h1 class="burgerTitulo"> BURGER QUEEN <a href="#/preparado" class="preparadoOrder"> Listo </a> <a href="#/cocinero" class="preparacion">En espera</a><a href="#/home" class="preparadoInicio">Inicio </a> </h1> 
     </div>
     </header>
     <section class="col-6">
@@ -241,16 +241,16 @@ const createButton = (objproducto) => {
 
   const enviar = createDiv.querySelector('#enviar')
   enviar.addEventListener('click', () => {
-    const nombre = document.getElementById("nombre").value; 
-    const mesa = document.getElementById("mesa").value;
-    sendToOrder(nombre, array1,"pendiente", mesa)
+    const nombre = document.getElementById("nombre");
+    const mesa = document.getElementById("mesa");     
+    sendToOrder(nombre.value, array1,"pendiente", mesa.value)
     const listOrder = document.querySelector("#list-order");
     listOrder.innerHTML = "";
     const total = document.querySelector("#total");
-    total.innerHTML = ""
-    
+    total.innerHTML = "";
+    nombre.value = "";
+    mesa.value = "";
    })
-
   return createDiv;
   }
   

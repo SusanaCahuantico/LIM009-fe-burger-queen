@@ -6,7 +6,7 @@ export default () => {
     <section>
     <header id="orderCheff"> 
     <div class="divPreparar">
-    <h3 class="pedidos">Listado de Pedidos  <a href="#/preparado" class="preparado"> Preparado </a>  </h3>
+    <h3 class="pedidos">Listado de Pedidos <a href="#/home" class="inicioA"> Inicio </a> <a href="#/preparado" class="preparadoA"> Preparado </a>  </h3>
     </div>
     </header>
     <div id="pedido" class="col-12">  </div>
@@ -18,11 +18,11 @@ export default () => {
     getOrder("pendiente",data =>{
         //let mostrar = "";
         data.forEach(element => {
-            //console.log(element.estado)
+            console.log(element)
             const createOrder = document.createElement('div')
             createOrder.className = 'box-order col-5';
           createOrder.innerHTML += `
-          <div class="cliente"> ${element.cliente} : ${element.estado} </div>
+          <div class="cliente">N°mesa:${element.mesa} ..........   ${element.cliente} : ${element.estado} </div>
           `;
           (element.productos).forEach(products => {
             createOrder.innerHTML += `
