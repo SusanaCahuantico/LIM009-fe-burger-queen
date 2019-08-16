@@ -1,4 +1,4 @@
-import { getOrder } from "../controller/firebase.js";
+import { getOrder, editStateOrder } from "../controller/firebase.js";
 
 export default () => {
     const createDiv = document.createElement('div');
@@ -27,10 +27,17 @@ export default () => {
                 <li class="lista"> ${products.name}</li>
                 `;
             })
-            /* createListo.innerHTML += `<button id="btn-${element.id}`) */
+            createListo.innerHTML += `<button id="btn-${element.id}" class="btn-listo"> Entregado </button>`; 
             pedidoListo.appendChild(createListo)
-        })
-    })
+            const btnListo = document.querySelector(`#btn-${element.id}`)
+             btnListo.addEventListener('click', ()=>{
+             editStateOrder(element.id, "entregado")
+             pedidoListo.removeChild(createListo)
+        }) 
+        });
+    })   
+    
+
 
     return createDiv;
 }
