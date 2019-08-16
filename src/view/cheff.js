@@ -1,0 +1,42 @@
+import {getOrder, editStateOrder } from '../controller/firebase.js'
+
+export default () => {
+    const createDiv = document.createElement('div');
+    const cheff = `
+    <section>
+    <header id="orderCheff"> 
+    <div class="divPreparar">
+    <h3 class="pedidos">Listado de Pedidos <a href="#/home" class="inicioA"> Inicio </a> <a href="#/preparado" class="preparadoA"> Preparado </a>  </h3>
+    </div>
+    </header>
+    <div id="pedido" class="col-12">  </div>
+    </section>
+    `;
+    createDiv.innerHTML = cheff;
+    
+    const pedido = createDiv.querySelector('#pedido')
+    getOrder("pendiente",data =>{
+        //let mostrar = "";
+        data.forEach(element => {
+            console.log(element)
+            const createOrder = document.createElement('div')
+            createOrder.className = 'box-order col-5';
+          createOrder.innerHTML += `
+          <div class="cliente">N°mesa:${element.mesa} ..........   ${element.cliente} : ${element.estado} </div>
+          `;
+          (element.productos).forEach(products => {
+            createOrder.innerHTML += `
+              <li class="lista"> ${products.name}</li>
+            `;
+        })
+        createOrder.innerHTML += `<button id="btn-${element.id}" class="btn-listo"> Listo </button>`;
+        pedido.appendChild(createOrder);
+        const btnListo = document.querySelector(`#btn-${element.id}`)
+        btnListo.addEventListener('click', ()=>{
+             editStateOrder(element.id, "preparado")
+             pedido.removeChild(createOrder)
+        }) 
+        });
+    })   
+    return createDiv;
+}
