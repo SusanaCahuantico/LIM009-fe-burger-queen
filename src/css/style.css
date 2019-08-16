@@ -219,7 +219,8 @@ h4{
 }
 
 .btn-elementos{
-    float: left;
+   /*float: left;*/
+   display: block;
     border-radius: 5px;
     border: 1.5px solid #173083;
     background-color: #ffffff;

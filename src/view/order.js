@@ -10,7 +10,6 @@ const array1Order = (objproducto, ele, adic = {}) => {
       name: objproducto.datos.Nombre +' '+ ele + ' '+ adic.nombre,
       price: objproducto.datos.Precio + 1,
       id: objproducto.id,
-      //adicional: objproducto.datos.Adicional
     }
     array1.push(objeto);
     console.log(array1)
@@ -27,7 +26,7 @@ const array1Order = (objproducto, ele, adic = {}) => {
          name: objproducto.datos.Nombre,
          price: objproducto.datos.Precio,
          id: objproducto.id,
-    }
+  }
     array1.push(objeto);
     console.log(array1)
   };
@@ -87,18 +86,18 @@ const createButton = (objproducto) => {
           const divElements = document.createElement('div')
           div.appendChild(divElements)
           divElements.id = 'elementos';
-          //divElements.innerHTML = '';
+          divElements.className = 'col-12';
           (createButton.div).forEach(ele => {
             //res pollo y vegano
             const divBtnEle = document.createElement('div')
             const createBtnEle = document.createElement("button")
-           // createBtnEle.setAttribute('data-toggle', 'modal')
+           divBtnEle.className = "col-4";
            createBtnEle.setAttribute('class', 'btn-elementos')
            // createBtnEle.setAttribute('data-target', `#${ele}`)
            // console.log(createBtnEle)
             divBtnEle.id = createBtn+ele;
             createBtnEle.innerHTML = ele;
-            createBtnEle.setAttribute("class", "btn btn-outline-primary")
+            //createBtnEle.setAttribute("class", "btn btn-outline-primary")
             divElements.appendChild(divBtnEle)
             divBtnEle.appendChild(createBtnEle)
             createBtnEle.addEventListener('click', () => {
@@ -113,7 +112,7 @@ const createButton = (objproducto) => {
               // huevo o queso
               const inputAdic = document.createElement('input')
               const labelInput = document.createElement('label')
-              inputAdic.className = 'cerrar';
+              inputAdic.className = 'inputAdic';
               inputAdic.type = 'checkbox';
                 labelInput.innerHTML = adic.nombre;
                 divBtnEle.appendChild(divInputAdic)
@@ -143,7 +142,7 @@ const createButton = (objproducto) => {
                    const total = document.querySelector('#total');
                    total.innerHTML = suma(array2) 
                   })
-                  /* if(ele == "res") {
+                  if(ele == "res") {
                     document.getElementById("res").style.display = 'block';
                     document.getElementById("pollo").style.display = 'none';
                     document.getElementById("vegetariano").style.display = 'none';           
@@ -155,7 +154,7 @@ const createButton = (objproducto) => {
                     document.getElementById('vegetariano').style.display = 'block';
                     document.getElementById('res').style.display = 'none';
                     document.getElementById('pollo').style.display = 'none';
-                  } */
+                  }
             })
           })
           break;
@@ -252,8 +251,4 @@ const createButton = (objproducto) => {
 
   return createDiv;
   }
-
-  //modal
-  // parentnode
-  //firstchild
   
