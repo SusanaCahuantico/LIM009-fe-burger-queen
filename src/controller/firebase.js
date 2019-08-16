@@ -16,14 +16,26 @@ export const getOrder =(callback) => {
     .onSnapshot((querySnapshot) => {
       const data = [];
       querySnapshot.forEach((doc) => {
-        data.push({id:doc.id, 
-                  cliente:doc.data().cliente,
-                  fecha: doc.data().fecha,
-                  estado: doc.data().estado,
-                  productos: doc.data().productos,
-                 })
+        console.log(doc.data().estado)
+        if(doc.data().estado=="pendiente"){  data.push({id:doc.id, 
+          cliente:doc.data().cliente,
+          fecha: doc.data().fecha,
+          estado: doc.data().estado,
+          productos: doc.data().productos,
+          }
+        )};
       });
     callback(data);
     })
   }
-     
+  
+  export const editStateOrder = (idOrder, newState) => {
+    var orderRef = firebase.firestore().collection('order').doc(idOrder);
+    return orderRef.update({
+      estado: newState
+
+    })
+  }
+
+
+  

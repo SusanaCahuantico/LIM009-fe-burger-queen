@@ -7,18 +7,21 @@ const array1Order = (objproducto, ele, adic = {}) => {
   //debugger
   if (objproducto.datos.Adicional != undefined && ((adic.nombre == 'huevo')||(adic.nombre == 'queso'))) {
     let objeto = {
-      name: objproducto.datos.Nombre +' de '+ ele + ' con '+ adic.nombre,
+      name: objproducto.datos.Nombre +' '+ ele + ' '+ adic.nombre,
       price: objproducto.datos.Precio + 1,
       id: objproducto.id,
+      //adicional: objproducto.datos.Adicional
     }
     array1.push(objeto);
+    console.log(array1)
   } else if (objproducto.datos.Tipo != undefined && ((objproducto.datos.Nombre == 'Hamburguesa Simple')||(objproducto.datos.Nombre == 'Hamburguesa doble'))){
         let objeto = {
-          name: objproducto.datos.Nombre +' de '+ ele,
+          name: objproducto.datos.Nombre +' '+ ele,
           price: objproducto.datos.Precio,
           id: objproducto.id,
         }
         array1.push(objeto);
+        console.log(array1)
   } else {
       let objeto = {
          name: objproducto.datos.Nombre,
@@ -26,6 +29,7 @@ const array1Order = (objproducto, ele, adic = {}) => {
          id: objproducto.id,
     }
     array1.push(objeto);
+    console.log(array1)
   };
   products.innerHTML = '';
   array1.forEach(elementos => {
@@ -88,9 +92,13 @@ const createButton = (objproducto) => {
             //res pollo y vegano
             const divBtnEle = document.createElement('div')
             const createBtnEle = document.createElement("button")
+           // createBtnEle.setAttribute('data-toggle', 'modal')
            createBtnEle.setAttribute('class', 'btn-elementos')
+           // createBtnEle.setAttribute('data-target', `#${ele}`)
+           // console.log(createBtnEle)
             divBtnEle.id = createBtn+ele;
             createBtnEle.innerHTML = ele;
+            createBtnEle.setAttribute("class", "btn btn-outline-primary")
             divElements.appendChild(divBtnEle)
             divBtnEle.appendChild(createBtnEle)
             createBtnEle.addEventListener('click', () => {
@@ -135,7 +143,7 @@ const createButton = (objproducto) => {
                    const total = document.querySelector('#total');
                    total.innerHTML = suma(array2) 
                   })
-                  if(ele == "res") {
+                  /* if(ele == "res") {
                     document.getElementById("res").style.display = 'block';
                     document.getElementById("pollo").style.display = 'none';
                     document.getElementById("vegetariano").style.display = 'none';           
@@ -143,13 +151,11 @@ const createButton = (objproducto) => {
                     document.getElementById('pollo').style.display = 'block';
                     document.getElementById('res').style.display = 'none';
                     document.getElementById('vegetariano').style.display = 'none';
-                  } else if (ele == 'vegetariano'){
+                  } else {
                     document.getElementById('vegetariano').style.display = 'block';
                     document.getElementById('res').style.display = 'none';
                     document.getElementById('pollo').style.display = 'none';
-                  } else {
-                    
-                  }
+                  } */
             })
           })
           break;
@@ -187,8 +193,8 @@ const createButton = (objproducto) => {
         <div id="contenido" class="content col-12"> </div>
     </section>
     <section class="col-6">
-        <p class="nombre"> Nombre del cliente: <input id="nombre" type="text" name="nombre" class="mesa"> </p>
-        <p class="nombre"> N° de mesa: <input id="mesa" type="number" name="nombre" class="mesa"> </p>  
+        <p class=""> Nombre del cliente: <input id="nombre" type="text" name="nombre" class="mesa" required> </p>
+        <p class=""> N° de mesa: <input id="mesa" type="number" name="nombre" class="mesa" required> </p>  
         <section class="section-lista col-12"> 
            <button class="list-product col-12"> Lista de productos </button>
            <div id="list-order" class="col-12">
@@ -196,8 +202,8 @@ const createButton = (objproducto) => {
            </div>
            </div>
            <div class="enviar"> 
-           <h2 class="total"> Total S/ <span id="total"></span>.00 </h2>
-             <button id="enviar" class="btn-enviar">  ENVIAR </button> 
+           <h1 class="total"> Total S/ <span id="total"></span>.00 </h1>
+             <button id="enviar" class="btn-enviar"> ENVIAR </button> 
           </div>
            </section>
            </section>
@@ -241,9 +247,13 @@ const createButton = (objproducto) => {
     listOrder.innerHTML = "";
     const total = document.querySelector("#total");
     total.innerHTML = ""
+    
    })
 
   return createDiv;
   }
 
+  //modal
+  // parentnode
+  //firstchild
   

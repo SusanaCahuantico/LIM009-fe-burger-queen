@@ -1,4 +1,4 @@
-import {getOrder} from '../controller/firebase.js'
+import {getOrder, editStateOrder } from '../controller/firebase.js'
 
 export default () => {
     const createDiv = document.createElement('div');
@@ -33,7 +33,8 @@ export default () => {
         pedido.appendChild(createOrder);
         const btnListo = document.querySelector(`#btn-${element.id}`)
         btnListo.addEventListener('click', ()=>{
-            console.log('hola') 
+             editStateOrder(element.id, "entregado")
+             pedido.removeChild(createOrder)
         }) 
         });
     })   
