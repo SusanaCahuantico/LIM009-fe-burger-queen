@@ -10,14 +10,14 @@ export const setOrders = (objOrder) => {
 
      
 /* Obtener los datos desde la colección de firestore */
-export const getOrder =(callback) => {
+export const getOrder = (state,callback) => {
     firebase.firestore().collection('order')
     .orderBy('fecha', 'desc')
     .onSnapshot((querySnapshot) => {
       const data = [];
       querySnapshot.forEach((doc) => {
         console.log(doc.data().estado)
-        if(doc.data().estado=="pendiente"){  data.push({id:doc.id, 
+        if(doc.data().estado===state){  data.push({id:doc.id, 
           cliente:doc.data().cliente,
           fecha: doc.data().fecha,
           estado: doc.data().estado,

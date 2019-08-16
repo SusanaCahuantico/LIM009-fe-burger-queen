@@ -15,7 +15,7 @@ export default () => {
     createDiv.innerHTML = cheff;
     
     const pedido = createDiv.querySelector('#pedido')
-    getOrder(data =>{
+    getOrder("pendiente",data =>{
         //let mostrar = "";
         data.forEach(element => {
             //console.log(element.estado)
@@ -33,7 +33,7 @@ export default () => {
         pedido.appendChild(createOrder);
         const btnListo = document.querySelector(`#btn-${element.id}`)
         btnListo.addEventListener('click', ()=>{
-             editStateOrder(element.id, "entregado")
+             editStateOrder(element.id, "preparado")
              pedido.removeChild(createOrder)
         }) 
         });
