@@ -43,6 +43,7 @@ header{
     /*box-sizing: border-box;
     border: 1px solid black; */
     border-bottom: 5px solid #173083;
+    padding: 7px;
    /*background-color: #0059ff;*/
 }
 
@@ -245,8 +246,42 @@ h4{
     margin: 5px;
 }
 
-#sinAdicional{
-   background-color: white;
-   border-radius: 7px;
-   
+.pedidos{
+    height: 30px;
+    padding-left: 30px;
+}
+.box-order {
+    border: 1.5px solid #173083;
+    margin: 10px; 
+    height: 40vh;
+}
+.cliente{
+    border-bottom: 1.5px solid #173083;
+    margin-bottom: 20px;
+}
+
+.btn-listo{
+    background-color: #173083;;
+    color: white;
+    width: 80%;
+    height: 45px;
+    padding: 7px;
+    border-radius: 7px;
+    text-align: center; 
+    float: center;
+    font-weight: 550;
+    margin-top: 25px;
+ 
+}
+
+.preparado, .inicio{
+    background-color: #173083;;
+    color: white;
+    width: 180px;
+    height: 40px;
+    /*padding: 7px;*/
+    border-radius: 7px;
+    text-align: center; 
+    float: right;
+    font-weight: 150;
 }

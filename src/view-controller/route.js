@@ -7,6 +7,8 @@ const changetmp = (hash) => {
         return changeView(hash);
     } else if (hash === '#home' || hash === '#/cocinero'){
         return changeView(hash);
+    } else if(hash === '#/home' || hash === '#/preparado'){
+        return changeView(hash);
     } else {
         return changeView('#/home');
     }
@@ -21,6 +23,8 @@ const changeView = (route) => {
         case '#/mesero': root.appendChild(components.order())
         break;
         case '#/cocinero': root.appendChild(components.cheff())
+        break;
+        case '#/preparado': root.appendChild(components.preparado())
         break;
         default:
             break;
